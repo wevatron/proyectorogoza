@@ -25,7 +25,8 @@ class Proveedor extends Migration
             $table->string('cuenta_debito');
             $table->string('correo_electronico');
             $table->string('banco');
-            $table->string('descripcion');            
+            $table->string('descripcion');
+            $table->integer('estado_id');          
             $table->timestamps();
         });
     }
@@ -37,6 +38,6 @@ class Proveedor extends Migration
      */
     public function down()
     {
-        
+
     }
 }

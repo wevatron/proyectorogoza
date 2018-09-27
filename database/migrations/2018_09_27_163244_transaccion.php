@@ -23,10 +23,11 @@ class Transaccion extends Migration
             $table->integer('venta_id');
             $table->integer('stock_id');
             $table->integer('compra_id');
-            $table->integer('tipo_transaccion');       
+            $table->integer('tipo_transaccion');
+            $table->integer('estado_id');     
             $table->timestamps();
         });
-        
+
     }
 
     /**

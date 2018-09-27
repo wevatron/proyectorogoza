@@ -24,9 +24,10 @@ class Producto extends Migration
             $table->string('codigo_barras');
             $table->double('numero_parte');
             $table->integer('stock_id');
+            $table->integer('estado_id');
             $table->timestamps();
         });
-       
+
     }
 
     /**

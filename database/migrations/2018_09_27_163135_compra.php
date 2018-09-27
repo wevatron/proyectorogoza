@@ -20,6 +20,7 @@ class Compra extends Migration
             $table->double('subtotal');
             $table->double('total');
             $table->double('descuento');
+            $table->integer('estado_id');
             $table->timestamps();
         });
     }

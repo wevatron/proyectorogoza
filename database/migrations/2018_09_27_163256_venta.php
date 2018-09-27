@@ -19,7 +19,8 @@ class Venta extends Migration
             $table->double('iva');
             $table->double('subtotal');
             $table->double('total');
-            $table->integer('descuento_id');     
+            $table->integer('descuento_id');
+            $table->integer('estado_id');   
             $table->timestamps();
         });
     }

@@ -19,7 +19,8 @@ class Stock extends Migration
             $table->integer('proveedor_id');
             $table->integer('producto_id');
             $table->double('precio_compra');
-            $table->double('precio_venta');        
+            $table->double('precio_venta');
+            $table->integer('estado_id');     
             $table->timestamps();
         });
     }

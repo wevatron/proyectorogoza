@@ -17,6 +17,7 @@ class TipoParte extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->integer('estado_id');
             $table->timestamps();
         });
     }

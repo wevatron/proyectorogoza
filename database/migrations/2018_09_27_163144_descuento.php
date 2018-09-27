@@ -18,6 +18,7 @@ class Descuento extends Migration
             $table->string('nombre');
             $table->double('porcentaje');
             $table->double('costo_fijo');
+            $table->integer('estado_id');
             $table->timestamps();
         });
     }
