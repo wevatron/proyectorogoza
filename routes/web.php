@@ -20,3 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('cliente', 'ClienteController');
+Route::resource('compra', 'CompraController');
+Route::resource('descuento', 'DescuentoController');
+Route::resource('producto', 'ProductoController');
+Route::resource('proveedor', 'ProveedorController');
+Route::resource('stock', 'StockController');
+Route::resource('tipoparte', 'TipoparteController');
+Route::resource('transaccion', 'TransaccionController');
+Route::resource('venta', 'VentaController');

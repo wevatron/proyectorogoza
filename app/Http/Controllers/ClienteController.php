@@ -44,7 +44,7 @@ class ClienteController extends Controller
     $Clientes->descuento_id=$request->descuento_id;
     $Clientes->estado_id=1;
     $Clientes->save();
-    return redirect()->route('Clientes.index')
+    return redirect()->route('cliente.index')
     ->with('info','El Cliente fue guardado');
   }
 
@@ -57,7 +57,7 @@ class ClienteController extends Controller
     $Clientes->correo_electronico=strtoupper($request->correo_electronico);
     $Clientes->descuento_id=$request->descuento_id;
     $Clientes->save();
-	  return redirect()->route('Clientes.index')
+	  return redirect()->route('cliente.index')
     ->with('info','El Cliente fue actualizado');
   }
 
@@ -65,7 +65,7 @@ class ClienteController extends Controller
     $Clientes = Cliente::find($id);
     $Clientes->estado_id=2;
     $Clientes->save();
-    return redirect()->route('Clientes.index')
+    return redirect()->route('cliente.index')
     ->with('info','El Cliente fue eliminado');
   }
 }
