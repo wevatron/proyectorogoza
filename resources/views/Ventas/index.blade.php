@@ -28,7 +28,7 @@
             <td> {{ $Venta->monto }} </td>
             <td> {{ $Venta->descuento_id }}  </td>
             <td> {{ $Venta->subtotal }}  </td>
-            <td> {{ $Venta->iv }}  </td>
+            <td> {{ $Venta->iva }}  </td>
             <td> {{ $Venta->total }}  </td>
             <td> <a href=" {{route('venta.edit', ['id'=> $Venta->id] )}}  " class="btn btn-success">Editar</a> </td>
 
