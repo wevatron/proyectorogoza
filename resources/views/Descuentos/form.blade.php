@@ -1,48 +1,27 @@
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('nombre', 'Nombre del Cliente')!!}
+    {!!Form::label('nombre', 'Nombre del Descuento')!!}
     {!!Form::text('nombre', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('rfc', 'RFC del Cliente')!!}
-    {!!Form::text('rfc', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('porcentaje', 'Procentaje del Descuento')!!}
+    {!!Form::number('porcentaje', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('direccion', 'Dirección del Cliente')!!}
-    {!!Form::text('direccion', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('costo_fijo', 'Costo Fijo del Descuento')!!}
+    {!!Form::number('costo_fijo', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('telefono', 'Telefono del Cliente')!!}
-    {!!Form::text('telefono', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('correo_electronico', 'Correo Electrónico del Cliente')!!}
-    {!!Form::text('correo_electronico', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
-
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('descuento_id', 'Descuento del Cliente (opcional)')!!}
-    {!!Form::text('descuento_id', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
 
   {!!Form::button("Guardar", ['type'=>'submit','class'=> 'btn btn-success'])!!}
 
-  <a href=" {{route("cliente.index")}}" class="btn btn-warning">Regresar</a>
-
-  
+  <a href=" {{route("descuento.index")}}" class="btn btn-warning">Regresar</a>

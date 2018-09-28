@@ -12,11 +12,11 @@
         <thead class="thead-dark">
           <tr>
             <th>Id</th>
-            <th>Nombre</th>
-            <th>RFC</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Correo Electrónico</th>
+            <th>Monto</th>
+            <th>Descuento</th>
+            <th>IVA</th>
+            <th>Subtotal</th>
+            <th>Total</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -25,11 +25,11 @@
           <tr>
 
             <td> {{ $Compra->id }} </td>
-            <td> {{ $Compra->nombre }} </td>
-            <td> {{ $Compra->rfc }}  </td>
-            <td> {{ $Compra->direccion }}  </td>
-            <td> {{ $Compra->telefono }}  </td>
-            <td> {{ $Compra->correo_electronico }}  </td>
+            <td> {{ $Compra->monto }} </td>
+            <td> {{ $Compra->descuento }}  </td>
+            <td> {{ $Compra->iva }}  </td>
+            <td> {{ $Compra->subtotal }}  </td>
+            <td> {{ $Compra->total }}  </td>
             <td> <a href=" {{route('compra.edit', ['id'=> $Compra->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 

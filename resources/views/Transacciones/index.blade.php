@@ -21,23 +21,23 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($Clientes as $Cliente)
+          @foreach($Transacciones as $Transaccion)
           <tr>
 
-            <td> {{ $Cliente->id }} </td>
-            <td> {{ $Cliente->nombre }} </td>
-            <td> {{ $Cliente->rfc }}  </td>
-            <td> {{ $Cliente->direccion }}  </td>
-            <td> {{ $Cliente->telefono }}  </td>
-            <td> {{ $Cliente->correo_electronico }}  </td>
-            <td> <a href=" {{route('transaccion.edit', ['id'=> $Cliente->id] )}}  " class="btn btn-success">Editar</a> </td>
+            <td> {{ $Transaccion->id }} </td>
+            <td> {{ $Transaccion->nombre }} </td>
+            <td> {{ $Transaccion->rfc }}  </td>
+            <td> {{ $Transaccion->direccion }}  </td>
+            <td> {{ $Transaccion->telefono }}  </td>
+            <td> {{ $Transaccion->correo_electronico }}  </td>
+            <td> <a href=" {{route('transaccion.edit', ['id'=> $Transaccion->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 
           </tr>
           @endforeach
         </tbody>
       </table>
-      {{ $Clientes->render()}}
+      {{ $Transacciones->render()}}
     </div>
   </div>
 @endsection

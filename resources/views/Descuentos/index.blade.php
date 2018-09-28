@@ -13,10 +13,8 @@
           <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>RFC</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Correo Electrónico</th>
+            <th>Procentaje</th>
+            <th>Costo Fijo</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -26,10 +24,8 @@
 
             <td> {{ $Descuento->id }} </td>
             <td> {{ $Descuento->nombre }} </td>
-            <td> {{ $Descuento->rfc }}  </td>
-            <td> {{ $Descuento->direccion }}  </td>
-            <td> {{ $Descuento->telefono }}  </td>
-            <td> {{ $Descuento->correo_electronico }}  </td>
+            <td> {{ $Descuento->porcentaje }}  </td>
+            <td> {{ $Descuento->costo_fijo }}  </td>
             <td> <a href=" {{route('descuento.edit', ['id'=> $Descuento->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 

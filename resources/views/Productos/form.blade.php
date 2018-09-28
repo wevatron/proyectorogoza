@@ -1,48 +1,76 @@
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('nombre', 'Nombre del Cliente')!!}
+    {!!Form::label('nombre', 'Nombre del Producto')!!}
     {!!Form::text('nombre', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('rfc', 'RFC del Cliente')!!}
-    {!!Form::text('rfc', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('descripcion_corta', 'Descripción Corta')!!}
+    {!!Form::text('descripcion_corta', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('direccion', 'Dirección del Cliente')!!}
-    {!!Form::text('direccion', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('descripcion_larga', 'Descripción Larga')!!}
+    {!!Form::text('descripcion_larga', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('telefono', 'Telefono del Cliente')!!}
-    {!!Form::text('telefono', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('modelo', 'Modelo del Producto')!!}
+    {!!Form::text('modelo', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('correo_electronico', 'Correo Electrónico del Cliente')!!}
-    {!!Form::text('correo_electronico', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('marca', 'Marca del Producto')!!}
+    {!!Form::text('marca', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('descuento_id', 'Descuento del Cliente (opcional)')!!}
-    {!!Form::text('descuento_id', null, ['class'=> 'form-control'])!!}
+    {!!Form::label('tipo_parte_id', 'Tipo de Parte')!!}
+    {!!Form::number('tipo_parte_id', null, ['class'=> 'form-control'])!!}
   </div>
 </div>
+
+<div class="col">
+      <div class="form-group">
+    {!!Form::label('codigo_barras', 'Código de Barras')!!}
+    {!!Form::text('codigo_barras', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
+<div class="col">
+      <div class="form-group">
+    {!!Form::label('numero_parte', 'Número de Parte')!!}
+    {!!Form::number('numero_parte', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
+<div class="col">
+      <div class="form-group">
+    {!!Form::label('stock_id', 'Stock')!!}
+    {!!Form::number('stock_id', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
   {!!Form::button("Guardar", ['type'=>'submit','class'=> 'btn btn-success'])!!}
 
-  <a href=" {{route("cliente.index")}}" class="btn btn-warning">Regresar</a>
-
-  
+  <a href=" {{route("producto.index")}}" class="btn btn-warning">Regresar</a>

@@ -42,7 +42,7 @@ class CompraController extends Controller
     $Compras->descuento=$request->descuento;
     $Compras->estado_id=1;
     $Compras->save();
-    return redirect()->route('Compras.index')
+    return redirect()->route('compra.index')
     ->with('info','La Compra fue guardada');
   }
 
@@ -54,7 +54,7 @@ class CompraController extends Controller
     $Compras->total=$request->total;
     $Compras->descuento=$request->descuento;
     $Compras->save();
-	  return redirect()->route('Compras.index')
+	  return redirect()->route('compra.index')
     ->with('info','La Compra fue actualizada');
   }
 
@@ -62,7 +62,7 @@ class CompraController extends Controller
     $Compras = Compra::find($id);
     $Compras->estado_id=2;
     $Compras->save();
-    return redirect()->route('Compras.index')
+    return redirect()->route('compra.index')
     ->with('info','La Compra fue eliminada');
   }
 }

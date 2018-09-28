@@ -48,7 +48,7 @@ class ProveedorController extends Controller
     $Proveedores->descripcion=strtoupper($request->descripcion);
     $Proveedores->estado_id=1;
     $Proveedores->save();
-    return redirect()->route('Proveedores.index')
+    return redirect()->route('proveedor.index')
     ->with('info','El Proveedor fue guardado');
   }
 
@@ -66,7 +66,7 @@ class ProveedorController extends Controller
     $Proveedores->banco=strtoupper($request->banco);
     $Proveedores->descripcion=strtoupper($request->descripcion);
     $Proveedores->save();
-	  return redirect()->route('Proveedores.index')
+	  return redirect()->route('proveedor.index')
     ->with('info','El Proveedor fue actualizado');
   }
 
@@ -74,7 +74,7 @@ class ProveedorController extends Controller
     $Proveedores = Proveedor::find($id);
     $Proveedores->estado_id=2;
     $Proveedores->save();
-    return redirect()->route('Proveedores.index')
+    return redirect()->route('proveedor.index')
     ->with('info','El Proveedor fue eliminado');
   }
 }

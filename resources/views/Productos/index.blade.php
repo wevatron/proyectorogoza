@@ -13,10 +13,14 @@
           <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>RFC</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Correo Electrónico</th>
+            <th>Descripción Corta</th>
+            <th>Descripcion Larga</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Tipo de Parte</th>
+            <th>Codigo de Barras</th>
+            <th>Número de Parte</th>
+            <th>Stock</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -26,10 +30,14 @@
 
             <td> {{ $Producto->id }} </td>
             <td> {{ $Producto->nombre }} </td>
-            <td> {{ $Producto->rfc }}  </td>
-            <td> {{ $Producto->direccion }}  </td>
-            <td> {{ $Producto->telefono }}  </td>
-            <td> {{ $Producto->correo_electronico }}  </td>
+            <td> {{ $Producto->descripcion_corta }}  </td>
+            <td> {{ $Producto->descripcion_larga }}  </td>
+            <td> {{ $Producto->modelo }}  </td>
+            <td> {{ $Producto->marca }}  </td>
+            <td> {{ $Producto->tipo_parte_id }}  </td>
+            <td> {{ $Producto->codigo_barras }}  </td>
+            <td> {{ $Producto->numero_parte }}  </td>
+            <td> {{ $Producto->stock_id }}  </td>
             <td> <a href=" {{route('producto.edit', ['id'=> $Producto->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 

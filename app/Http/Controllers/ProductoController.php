@@ -47,7 +47,7 @@ class ProductoController extends Controller
     $Productos->stock_id=$request->stock_id;
     $Productos->estado_id=1;
     $Productos->save();
-    return redirect()->route('Productos.index')
+    return redirect()->route('producto.index')
     ->with('info','El Producto fue guardado');
   }
 
@@ -63,7 +63,7 @@ class ProductoController extends Controller
     $Productos->numero_parte=$request->numero_parte;
     $Productos->stock_id=$request->stock_id;
     $Productos->save();
-	  return redirect()->route('Productos.index')
+	  return redirect()->route('producto.index')
     ->with('info','El Producto fue actualizado');
   }
 
@@ -71,7 +71,7 @@ class ProductoController extends Controller
     $Productos = Producto::find($id);
     $Productos->estado_id=2;
     $Productos->save();
-    return redirect()->route('Productos.index')
+    return redirect()->route('producto.index')
     ->with('info','El Producto fue eliminado');
   }
 }

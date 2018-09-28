@@ -40,7 +40,7 @@ class DescuentoController extends Controller
     $Descuentos->costo_fijo=$request->costo_fijo;
     $Descuentos->estado_id=1;
     $Descuentos->save();
-    return redirect()->route('Descuentos.index')
+    return redirect()->route('descuento.index')
     ->with('info','El Descuento fue guardado');
   }
 
@@ -50,7 +50,7 @@ class DescuentoController extends Controller
     $Descuentos->porcentaje=$request->porcentaje;
     $Descuentos->costo_fijo=$request->costo_fijo;
     $Descuentos->save();
-	  return redirect()->route('Descuentos.index')
+	  return redirect()->route('descuento.index')
     ->with('info','El Descuento fue actualizado');
   }
 
@@ -58,7 +58,7 @@ class DescuentoController extends Controller
     $Descuentos = Descuento::find($id);
     $Descuentos->estado_id=2;
     $Descuentos->save();
-    return redirect()->route('Descuentos.index')
+    return redirect()->route('descuento.index')
     ->with('info','El Descuento fue eliminado');
   }
 }
