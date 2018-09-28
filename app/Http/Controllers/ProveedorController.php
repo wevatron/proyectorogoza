@@ -33,7 +33,7 @@ class ProveedorController extends Controller
   	return view ('Proveedores.create',compact('Proveedores'));
   }
 
-  public function store(ProveedoreRequest $request){
+  public function store(ProveedorRequest $request){
     $Proveedores = new Proveedor;
     $Proveedores->nombre=strtoupper($request->nombre);
     $Proveedores->RFC=strtoupper($request->RFC);
@@ -52,7 +52,7 @@ class ProveedorController extends Controller
     ->with('info','El Proveedor fue guardado');
   }
 
-  public function update(ProveedoreRequest $request, $id){
+  public function update(ProveedorRequest $request, $id){
     $Proveedores = Proveedor::find($id);
     $Proveedores->nombre=strtoupper($request->nombre);
     $Proveedores->RFC=strtoupper($request->RFC);

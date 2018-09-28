@@ -4,7 +4,7 @@
   <div class="row" style="margin-top: 0px">
     <div class="col">
       <div class="text-right" style="margin-bottom: 20px">
-        <a class="btn btn-primary" href=" {{route('Stock.create')}} ">Agregar a Stock</a>
+        <a class="btn btn-primary" href=" {{route('stock.create')}} ">Agregar a Stock</a>
       </div>
 
 
@@ -12,11 +12,11 @@
         <thead class="thead-dark">
           <tr>
             <th>Id</th>
-            <th>Nombre</th>
-            <th>RFC</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Correo Electrónico</th>
+            <th>Cantidad</th>
+            <th>Proveedor</th>
+            <th>Producto</th>
+            <th>Precio de Compra</th>
+            <th>Precio de Venta</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -25,12 +25,12 @@
           <tr>
 
             <td> {{ $Stoc->id }} </td>
-            <td> {{ $Stoc->nombre }} </td>
-            <td> {{ $Stoc->rfc }}  </td>
-            <td> {{ $Stoc->direccion }}  </td>
-            <td> {{ $Stoc->telefono }}  </td>
-            <td> {{ $Stoc->correo_electronico }}  </td>
-            <td> <a href=" {{route('Stock.edit', ['id'=> $Stoc->id] )}}  " class="btn btn-success">Editar</a> </td>
+            <td> {{ $Stoc->cantidad }} </td>
+            <td> {{ $Stoc->proveedor_id }}  </td>
+            <td> {{ $Stoc->producto_id }}  </td>
+            <td> {{ $Stoc->precio_compra }}  </td>
+            <td> {{ $Stoc->precio_venta }}  </td>
+            <td> <a href=" {{route('stock.edit', ['id'=> $Stoc->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 
           </tr>

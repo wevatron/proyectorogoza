@@ -32,7 +32,7 @@ class StockController extends Controller
     $Stock=Stock::all();
   	return view ('Stock.create',compact('Stock'));
   }
-  
+
   public function store(StockRequest $request){
     $Stock = new Stock;
     $Stock->cantidad=$request->cantidad;
@@ -42,7 +42,7 @@ class StockController extends Controller
     $Stock->precio_venta=$request->precio_venta;
     $Stock->estado_id=1;
     $Stock->save();
-    return redirect()->route('Stock.index')
+    return redirect()->route('stock.index')
     ->with('info','El Stock fue guardado');
   }
 
@@ -54,7 +54,7 @@ class StockController extends Controller
     $Stock->precio_compra=$request->precio_compra;
     $Stock->precio_venta=$request->precio_venta;
     $Stock->save();
-	  return redirect()->route('Stock.index')
+	  return redirect()->route('stock.index')
     ->with('info','El Stock fue actualizado');
   }
 
@@ -62,7 +62,7 @@ class StockController extends Controller
     $Stock = Stock::find($id);
     $Stock->estado_id=2;
     $Stock->save();
-    return redirect()->route('Stock.index')
+    return redirect()->route('stock.index')
     ->with('info','El Stock fue eliminado');
   }
 }

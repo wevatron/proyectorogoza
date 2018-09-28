@@ -32,7 +32,7 @@ class TransaccionController extends Controller
     $Transacciones=Transaccion::all();
   	return view ('Transacciones.create',compact('Transacciones'));
   }
-	
+
   public function store(TransaccionRequest $request){
     $Transacciones = new Transaccion;
     $Transacciones->cantidad=$request->cantidad;
@@ -46,7 +46,7 @@ class TransaccionController extends Controller
     $Transacciones->tipo_transaccion=$request->tipo_transaccion;
     $Transacciones->estado_id=1;
     $Transacciones->save();
-    return redirect()->route('Transacciones.index')
+    return redirect()->route('transaccion.index')
     ->with('info','El Tipo de parte fue guardado');
   }
 
@@ -62,7 +62,7 @@ class TransaccionController extends Controller
     $Transacciones->compra_id=$request->compra_id;
     $Transacciones->tipo_transaccion=$request->tipo_transaccion;
     $Transacciones->save();
-	  return redirect()->route('Transacciones.index')
+	  return redirect()->route('transaccion.index')
     ->with('info','El Tipo de parte fue actualizado');
   }
 
@@ -70,7 +70,7 @@ class TransaccionController extends Controller
     $Transacciones = Transaccion::find($id);
     $Transacciones->estado_id=2;
     $Transacciones->save();
-    return redirect()->route('Transacciones.index')
+    return redirect()->route('transaccion.index')
     ->with('info','El Tipo de parte fue eliminado');
   }
 }

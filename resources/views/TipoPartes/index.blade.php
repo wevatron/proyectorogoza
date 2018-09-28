@@ -13,10 +13,7 @@
           <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>RFC</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Correo Electrónico</th>
+            <th>Descripción</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -26,10 +23,7 @@
 
             <td> {{ $TipoParte->id }} </td>
             <td> {{ $TipoParte->nombre }} </td>
-            <td> {{ $TipoParte->rfc }}  </td>
-            <td> {{ $TipoParte->direccion }}  </td>
-            <td> {{ $TipoParte->telefono }}  </td>
-            <td> {{ $TipoParte->correo_electronico }}  </td>
+            <td> {{ $TipoParte->descripcion }}  </td>
             <td> <a href=" {{route('tipoparte.edit', ['id'=> $TipoParte->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 

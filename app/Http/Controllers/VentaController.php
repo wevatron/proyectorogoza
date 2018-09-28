@@ -32,7 +32,7 @@ class VentaController extends Controller
     $Ventas=Venta::all();
   	return view ('Ventas.create',compact('Ventas'));
   }
-  
+
   public function store(VentaRequest $request){
     $Ventas = new Venta;
     $Ventas->monto=$request->monto;
@@ -42,7 +42,7 @@ class VentaController extends Controller
     $Ventas->descuento_id=$request->descuento_id;
     $Ventas->estado_id=1;
     $Ventas->save();
-    return redirect()->route('Ventas.index')
+    return redirect()->route('venta.index')
     ->with('info','La Venta fue guardada');
   }
 
@@ -54,7 +54,7 @@ class VentaController extends Controller
     $Ventas->total=$request->total;
     $Ventas->descuento_id=$request->descuento_id;
     $Ventas->save();
-	  return redirect()->route('Ventas.index')
+	  return redirect()->route('venta.index')
     ->with('info','La Venta fue actualizada');
   }
 
@@ -62,7 +62,7 @@ class VentaController extends Controller
     $Ventas = Venta::find($id);
     $Ventas->estado_id=2;
     $Ventas->save();
-    return redirect()->route('Ventas.index')
+    return redirect()->route('venta.index')
     ->with('info','La Venta fue eliminada');
   }
 }

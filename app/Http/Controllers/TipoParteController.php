@@ -32,14 +32,14 @@ class TipoParteController extends Controller
     $TipoPartes=TipoParte::all();
   	return view ('TipoPartes.create',compact('TipoPartes'));
   }
-  
+
   public function store(TipoParteRequest $request){
     $TipoPartes = new TipoParte;
     $TipoPartes->nombre=strtoupper($request->nombre);
     $TipoPartes->descripcion=strtoupper($request->descripcion);
     $TipoPartes->estado_id=1;
     $TipoPartes->save();
-    return redirect()->route('TipoPartes.index')
+    return redirect()->route('tipoparte.index')
     ->with('info','El Tipo de parte fue guardado');
   }
 
@@ -48,7 +48,7 @@ class TipoParteController extends Controller
     $TipoPartes->nombre=strtoupper($request->nombre);
     $TipoPartes->descripcion=strtoupper($request->descripcion);
     $TipoPartes->save();
-	  return redirect()->route('TipoPartes.index')
+	  return redirect()->route('tipoparte.index')
     ->with('info','El Tipo de parte fue actualizado');
   }
 
@@ -56,7 +56,7 @@ class TipoParteController extends Controller
     $TipoPartes = TipoParte::find($id);
     $TipoPartes->estado_id=2;
     $TipoPartes->save();
-    return redirect()->route('TipoPartes.index')
+    return redirect()->route('tipoparte.index')
     ->with('info','El Tipo de parte fue eliminado');
   }
 }

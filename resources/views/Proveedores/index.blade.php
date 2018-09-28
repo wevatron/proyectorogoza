@@ -26,7 +26,7 @@
 
             <td> {{ $Proveedor->id }} </td>
             <td> {{ $Proveedor->nombre }} </td>
-            <td> {{ $Proveedor->rfc }}  </td>
+            <td> {{ $Proveedor->RFC }}  </td>
             <td> {{ $Proveedor->direccion }}  </td>
             <td> {{ $Proveedor->telefono }}  </td>
             <td> {{ $Proveedor->correo_electronico }}  </td>
