@@ -3,6 +3,7 @@
 @section('content')
   <div class="row" style="margin-top: 0px">
     <div class="col">
+      <h3>Catalogo de descuentos</h3>
       <div class="text-right" style="margin-bottom: 20px">
         <a class="btn btn-primary" href=" {{route('descuento.create')}} ">Agregar Descuento</a>
       </div>

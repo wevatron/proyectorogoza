@@ -3,6 +3,7 @@
 @section('content')
   <div class="row" style="margin-top: 0px">
     <div class="col">
+      <h3>Inventario</h3>
       <div class="text-right" style="margin-bottom: 20px">
         <a class="btn btn-primary" href=" {{route('stock.create')}} ">Agregar a Stock</a>
       </div>
