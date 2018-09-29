@@ -21,6 +21,7 @@
             <th>Telefono</th>
             <th>Correo Electrónico</th>
             <th>Editar</th>
+            <th>Gestionar</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +35,8 @@
             <td> {{ $Cliente->telefono }}  </td>
             <td> {{ $Cliente->correo_electronico }}  </td>
             <td> <a href=" {{route('cliente.edit', ['id'=> $Cliente->id] )}}  " class="btn btn-success">Editar</a> </td>
-            
+            <td> <a href=" {{route('cliente.show', ['id'=> $Cliente->id] )}}  " class="btn btn-info">Gestionar</a> </td>
+
 
           </tr>
           @endforeach

@@ -20,7 +20,6 @@ class Cliente extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->string('correo_electronico');
-            $table->integer('descuento_id');
             $table->integer('estado_id');
             $table->timestamps();
         });

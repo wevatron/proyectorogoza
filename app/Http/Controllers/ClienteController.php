@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Cliente;
+use App\ClienteDescuentoRelacion;
 use App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
@@ -24,6 +25,19 @@ class ClienteController extends Controller
     return view('Clientes.index',compact('Clientes'));
   }
 
+  public function show(Request $request,$id){
+    $Clientes=Cliente::find($id);
+
+    $ClientesDescuentos=ClienteDescuentoRelacion::orderBy('clientes_descuentos_relacion.id_cliente_descuento','desc')
+                  ->join('clientes', 'clientes_descuentos_relacion.cliente_id', '=', 'clientes.id')
+                  ->join('descuentos', 'clientes_descuentos_relacion.descuento_id', '=', 'descuentos.id')
+                  ->where('clientes_descuentos_relacion.cliente_id',$id)
+                  ->where('descuentos.estado_id',1)
+                  ->where('clientes.estado_id',1)
+                  ->paginate(20);
+    return view('Clientes.show',compact('ClientesDescuentos','Clientes'));
+  }
+
   public function edit($id){
   	$Clientes=Cliente::find($id);
   	return view ('Clientes.edit',compact('Clientes'));
@@ -41,7 +55,6 @@ class ClienteController extends Controller
     $Clientes->direccion=strtoupper($request->direccion);
     $Clientes->telefono=$request->telefono;
     $Clientes->correo_electronico=strtoupper($request->correo_electronico);
-    $Clientes->descuento_id=$request->descuento_id;
     $Clientes->estado_id=1;
     $Clientes->save();
     return redirect()->route('cliente.index')
@@ -55,7 +68,6 @@ class ClienteController extends Controller
     $Clientes->direccion=strtoupper($request->direccion);
     $Clientes->telefono=$request->telefono;
     $Clientes->correo_electronico=strtoupper($request->correo_electronico);
-    $Clientes->descuento_id=$request->descuento_id;
     $Clientes->save();
 	  return redirect()->route('cliente.index')
     ->with('info','El Cliente fue actualizado');

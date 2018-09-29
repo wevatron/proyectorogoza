@@ -8,7 +8,7 @@ class Cliente extends Model
 {
     protected $table = 'clientes';
   	protected $fillable = [
-		'nombre','rfc','direccion','telefono','correo_electronico','descuento_id','estado_id',
+		'nombre','rfc','direccion','telefono','correo_electronico','estado_id',
   	];
     public function scopeNombre($query, $nombre){
         if($nombre)

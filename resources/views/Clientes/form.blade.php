@@ -34,15 +34,7 @@
   </div>
 </div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('descuento_id', 'Descuento del Cliente (opcional)')!!}
-    {!!Form::text('descuento_id', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
 
   {!!Form::button("Guardar", ['type'=>'submit','class'=> 'btn btn-success'])!!}
 
   <a href=" {{route("cliente.index")}}" class="btn btn-warning">Regresar</a>
-
-  
