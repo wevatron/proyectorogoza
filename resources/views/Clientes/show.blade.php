@@ -44,13 +44,12 @@
             <td> {{ $ClienteDescuento->nombre }} </td>
             <td> {{ $ClienteDescuento->porcentaje }}  </td>
             <td> {{ $ClienteDescuento->costo_fijo }}  </td>
-            <td> <a href=" {{route('clientedescuento.edit', ['id'=> $ClienteDescuento->id_cliente_descuento] )}}  " class="btn btn-info">Editarrrr</a> </td>
+            <td> <a href=" {{route('clientedescuento.edit', ['id'=> $ClienteDescuento->id_cliente_descuento] )}}  " class="btn btn-info">Editar</a> </td>
 
           </tr>
           @endforeach
         </tbody>
       </table>
-      {{ $ClientesDescuentos->render()}}
     </div>
   </div>
 @endsection

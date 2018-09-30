@@ -29,3 +29,4 @@ Route::resource('tipoparte', 'TipoparteController');
 Route::resource('transaccion', 'TransaccionController');
 Route::resource('venta', 'VentaController');
 Route::resource('clientedescuento', 'ClienteDescuentoController');
+Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('obtener');

@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Cliente;
+use App\Descuento;
 use App\ClienteDescuentoRelacion;
 use App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
 {
-
   public function __construct(){
     $this->middleware('auth');
   }
+
+
 
   public function index(Request $request){
     $nombre = $request->get('nombre');
@@ -27,14 +29,14 @@ class ClienteController extends Controller
 
   public function show(Request $request,$id){
     $Clientes=Cliente::find($id);
-
-    $ClientesDescuentos=ClienteDescuentoRelacion::orderBy('clientes_descuentos_relacion.id_cliente_descuento','desc')
-                  ->join('clientes', 'clientes_descuentos_relacion.cliente_id', '=', 'clientes.id')
-                  ->join('descuentos', 'clientes_descuentos_relacion.descuento_id', '=', 'descuentos.id')
-                  ->where('clientes_descuentos_relacion.cliente_id',$id)
-                  ->where('descuentos.estado_id',1)
-                  ->where('clientes.estado_id',1)
-                  ->paginate(20);
+    $ClientesDescuentos= DB::select('select * from clientes_descuentos_relacion
+    inner join clientes on clientes_descuentos_relacion.cliente_id = clientes.id
+    inner join descuentos on clientes_descuentos_relacion.descuento_id = descuentos.id
+    where clientes_descuentos_relacion.cliente_id='.$id.'
+    and clientes.estado_id=1
+    and descuentos.estado_id=1
+    and clientes_descuentos_relacion.estado_id=1
+    order by id_cliente_descuento desc');
     return view('Clientes.show',compact('ClientesDescuentos','Clientes'));
   }
 
@@ -79,5 +81,10 @@ class ClienteController extends Controller
     $Clientes->save();
     return redirect()->route('cliente.index')
     ->with('info','El Cliente fue eliminado');
+  }
+
+  public function obtener(){
+    return  Descuento::orderBy('id','desc')->where('estado_id',1)->get();
+
   }
 }
