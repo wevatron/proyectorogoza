@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Producto;
+use App\TipoPArte;
 use App\Http\Requests\ProductoRequest;
 
 class ProductoController extends Controller
@@ -19,7 +20,6 @@ class ProductoController extends Controller
                   ->where('estado_id',1)
                   ->nombre($nombre)
                   ->paginate(20);
-
     return view('Productos.index',compact('Productos'));
   }
 
@@ -41,10 +41,9 @@ class ProductoController extends Controller
     $Productos->descripcion_larga=strtoupper($request->descripcion_larga);
     $Productos->modelo=strtoupper($request->modelo);
     $Productos->marca=strtoupper($request->marca);
-    $Productos->tipo_parte_id=$request->tipo_parte_id;
+    $completo=explode( '-', strtoupper($request->tipo_parte_id));
+    $Productos->tipo_parte_id=strtoupper($completo[0]);
     $Productos->codigo_barras=strtoupper($request->codigo_barras);
-    $Productos->numero_parte=$request->numero_parte;
-    $Productos->stock_id=$request->stock_id;
     $Productos->estado_id=1;
     $Productos->save();
     return redirect()->route('producto.index')
@@ -58,10 +57,9 @@ class ProductoController extends Controller
     $Productos->descripcion_larga=strtoupper($request->descripcion_larga);
     $Productos->modelo=strtoupper($request->modelo);
     $Productos->marca=strtoupper($request->marca);
-    $Productos->tipo_parte_id=$request->tipo_parte_id;
+    $completo=explode( '-', strtoupper($request->tipo_parte_id));
+    $Productos->tipo_parte_id=strtoupper($completo[0]);
     $Productos->codigo_barras=strtoupper($request->codigo_barras);
-    $Productos->numero_parte=$request->numero_parte;
-    $Productos->stock_id=$request->stock_id;
     $Productos->save();
 	  return redirect()->route('producto.index')
     ->with('info','El Producto fue actualizado');
@@ -74,4 +72,10 @@ class ProductoController extends Controller
     return redirect()->route('producto.index')
     ->with('info','El Producto fue eliminado');
   }
+
+  public function obtener(){
+    return  TipoParte::orderBy('id','desc')->where('estado_id',1)->get();
+
+  }
+
 }

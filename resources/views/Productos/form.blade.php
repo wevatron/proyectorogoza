@@ -37,7 +37,8 @@
 <div class="col">
       <div class="form-group">
     {!!Form::label('tipo_parte_id', 'Tipo de Parte')!!}
-    {!!Form::number('tipo_parte_id', null, ['class'=> 'form-control'])!!}
+    {!!Form::text('tipo_parte_id', $Productos->tipo_parte_id."-".$Productos->nombre, ['class'=> 'form-control'])!!}
+      <a id='botonauto' onclick="ocultar('tipo_parte_id','botonauto');" class="btn btn-warning">a</a>
   </div>
 </div>
 
@@ -48,19 +49,46 @@
   </div>
 </div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('numero_parte', 'Número de Parte')!!}
-    {!!Form::number('numero_parte', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
+<script>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('stock_id', 'Stock')!!}
-    {!!Form::number('stock_id', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
+function ocultar(tarjet,boton){
+
+      $('#'+tarjet).prop('disabled', false);
+      $('#'+tarjet).val("");
+      $('#'+boton).hide();
+
+}
+
+function asignarAuto(tarjet,boton){
+    if($('#'+boton).prop('disabled', false)){
+      $('#'+tarjet).prop('disabled', true);
+      $('#'+boton).show();
+    }
+}
+  $( function() {
+    if($('#tags').val()==""){
+
+    }else{
+      $('#tags').prop('disabled', true);
+      $('#botonauto').prop('disabled', false);
+    }
+
+    $.get('/productotipoparteasync',function(dato){
+      var descuentos = [];
+      for (var i=0; i<dato.length;i++)
+        descuentos.push(dato[i].id+'-'+dato[i].nombre);
+      $( "#tipo_parte_id" ).autocomplete({
+        source:descuentos,
+        onAutocomplete: function(val) {
+          asignarAuto("tags", "botonauto");
+        }
+      });
+
+    });
+  });
+  </script>
+
+
 
 
 

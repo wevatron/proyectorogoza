@@ -20,8 +20,6 @@
             <th>Marca</th>
             <th>Tipo de Parte</th>
             <th>Codigo de Barras</th>
-            <th>Número de Parte</th>
-            <th>Stock</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -37,8 +35,6 @@
             <td> {{ $Producto->marca }}  </td>
             <td> {{ $Producto->tipo_parte_id }}  </td>
             <td> {{ $Producto->codigo_barras }}  </td>
-            <td> {{ $Producto->numero_parte }}  </td>
-            <td> {{ $Producto->stock_id }}  </td>
             <td> <a href=" {{route('producto.edit', ['id'=> $Producto->id] )}}  " class="btn btn-success">Editar</a> </td>
 
 

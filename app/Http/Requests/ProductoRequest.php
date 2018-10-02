@@ -31,8 +31,7 @@ class ProductoRequest extends FormRequest
             'marca' => 'required',
             'tipo_parte_id' => 'required',
             'codigo_barras' => 'required',
-            'numero_parte' => 'required',
-            'stock_id' => 'required',
+            
 
         ];
     }

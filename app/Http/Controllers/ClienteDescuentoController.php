@@ -18,7 +18,9 @@ class ClienteDescuentoController extends Controller
   }
 
   public function edit($id){
-    $ClientesDescuentos=ClienteDescuentoRelacion::where('id_cliente_descuento','=',$id)->first();
+    $ClientesDescuentos=ClienteDescuentoRelacion::where('id_cliente_descuento','=',$id)
+      ->join('descuentos', 'clientes_descuentos_relacion.descuento_id', '=', 'descuentos.id')
+      ->first();
     $cliente=$ClientesDescuentos->cliente_id;
     return view ('ClientesDescuentos.edit',compact('id','ClientesDescuentos','cliente'));
   }

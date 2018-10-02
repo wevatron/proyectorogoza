@@ -23,6 +23,8 @@
               <a class="dropdown-item" href=" {{route('proveedor.index')}} ">Proveedores</a>
               <a class="dropdown-item" href=" {{route('producto.index')}} ">Productos</a>
               <a class="dropdown-item" href=" {{route('descuento.index')}} ">Descuentos</a>
+              <a class="dropdown-item" href=" {{route('tipoparte.index')}} ">Tipos de Partes</a>
+              <a class="dropdown-item" href=" {{route('stock.index')}} ">Stock</a>
               <div class="dropdown-divider"></div>
             </div>
           </li>
@@ -38,7 +40,7 @@
               <div class="dropdown-divider"></div>
             </div>
           </li>
-          
+
           @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
@@ -74,6 +76,6 @@
         </form>
       </div>
   </div>
-  
+
 </nav>
 @endsection
