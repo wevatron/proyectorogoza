@@ -31,6 +31,7 @@ Route::resource('venta', 'VentaController');
 Route::resource('clientedescuento', 'ClienteDescuentoController');
 Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('obtener');
 Route::get('productotipoparteasync', 'ProductoController@obtener')->name('obtener');
+Route::get('proveedorasync', 'StockController@obtener')->name('obtener');
 
 
 Route::get('importExport', 'MaatwebsiteDemoController@importExport');

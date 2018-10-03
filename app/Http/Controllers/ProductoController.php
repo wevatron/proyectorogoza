@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Producto;
+use App\Stock;
 use App\TipoPArte;
 use App\Http\Requests\ProductoRequest;
 
@@ -44,6 +45,9 @@ class ProductoController extends Controller
     $completo=explode( '-', strtoupper($request->tipo_parte_id));
     $Productos->tipo_parte_id=strtoupper($completo[0]);
     $Productos->codigo_barras=strtoupper($request->codigo_barras);
+    $Productos->precio=$request->precio;
+    $Productos->precioiva=$request->precioiva;
+    $Productos->comentario=strtoupper($request->comentario);
     $Productos->estado_id=1;
     $Productos->save();
     return redirect()->route('producto.index')
@@ -60,6 +64,9 @@ class ProductoController extends Controller
     $completo=explode( '-', strtoupper($request->tipo_parte_id));
     $Productos->tipo_parte_id=strtoupper($completo[0]);
     $Productos->codigo_barras=strtoupper($request->codigo_barras);
+    $Productos->precio=$request->precio;
+    $Productos->precioiva=$request->precioiva;
+    $Productos->comentario=strtoupper($request->comentario);
     $Productos->save();
 	  return redirect()->route('producto.index')
     ->with('info','El Producto fue actualizado');
@@ -75,7 +82,12 @@ class ProductoController extends Controller
 
   public function obtener(){
     return  TipoParte::orderBy('id','desc')->where('estado_id',1)->get();
+  }
 
+  public function show($id){
+    $Productos = Producto::find($id);
+    $Stocks = Stock::orderBy('id','desc')->where('producto_id','=',$id)->where('estado_id','=',1)->paginate(20);
+    return view ('Productos.show',compact('Productos','Stocks'));
   }
 
 }

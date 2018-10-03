@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Stock;
+use App\Proveedor;
 use App\Http\Requests\StockRequest;
 
 class StockController extends Controller
@@ -25,44 +26,55 @@ class StockController extends Controller
 
   public function edit($id){
   	$Stock=Stock::find($id);
-  	return view ('Stock.edit',compact('Stock'));
+    $Proveedor=Proveedor::where('id','=',$Stock->proveedor_id)->first();
+
+    $id=$Stock->producto_id;
+  	return view ('Stock.edit',compact('Stock','id','Proveedor'));
   }
 
-  public function create(){
-    $Stock=Stock::all();
-  	return view ('Stock.create',compact('Stock'));
+  public function show($id){
+
+    return view ('Stock.create',compact('id'));
   }
 
   public function store(StockRequest $request){
     $Stock = new Stock;
     $Stock->cantidad=$request->cantidad;
-    $Stock->proveedor_id=$request->proveedor_id;
+    $completo=explode( '-', strtoupper($request->proveedor_id));
+    $Stock->proveedor_id=strtoupper($completo[0]);
     $Stock->producto_id=$request->producto_id;
     $Stock->precio_compra=$request->precio_compra;
     $Stock->precio_venta=$request->precio_venta;
     $Stock->estado_id=1;
     $Stock->save();
-    return redirect()->route('stock.index')
+    return redirect()->route('producto.show',$Stock->producto_id)
     ->with('info','El Stock fue guardado');
   }
 
   public function update(StockRequest $request, $id){
     $Stock = Stock::find($id);
     $Stock->cantidad=$request->cantidad;
-    $Stock->proveedor_id=$request->proveedor_id;
+    $completo=explode( '-', strtoupper($request->proveedor_id));
+    $Stock->proveedor_id=strtoupper($completo[0]);
     $Stock->producto_id=$request->producto_id;
     $Stock->precio_compra=$request->precio_compra;
     $Stock->precio_venta=$request->precio_venta;
     $Stock->save();
-	  return redirect()->route('stock.index')
-    ->with('info','El Stock fue actualizado');
+    return redirect()->route('producto.show',$Stock->producto_id)
+    ->with('info','El Stock fue guardado');
   }
 
   public function destroy($id){
     $Stock = Stock::find($id);
+    
     $Stock->estado_id=2;
     $Stock->save();
-    return redirect()->route('stock.index')
-    ->with('info','El Stock fue eliminado');
+    return redirect()->route('producto.show',$Stock->producto_id)
+    ->with('info','El Stock fue guardado');
+  }
+
+  public function obtener(){
+    return  Proveedor::orderBy('id','desc')->where('estado_id',1)->get();
+
   }
 }

@@ -49,6 +49,28 @@
   </div>
 </div>
 
+<div class="col">
+  <div class="form-group">
+    {!!Form::label('precio', 'Precio de Lista')!!}
+    {!!Form::number('precio', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
+<div class="col">
+      <div class="form-group">
+    {!!Form::label('precioiva', 'Precio con IVA')!!}
+    {!!Form::number('precioiva', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
+
+<div class="col">
+      <div class="form-group">
+    {!!Form::label('comentario', 'Comentario')!!}
+    {!!Form::text('comentario', null, ['class'=> 'form-control'])!!}
+  </div>
+</div>
+
 <script>
 
 function ocultar(tarjet,boton){

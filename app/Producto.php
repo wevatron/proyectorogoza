@@ -13,12 +13,6 @@ class Producto extends Model
   	];
     public function scopeNombre($query, $nombre){
         if($nombre)
-            $query->where('nombre','LIKE', "%$nombre%")
-        		  ->orwhere('descripcion_corta','LIKE', "%$nombre%")
-        		  ->orwhere('descripcion_larga','LIKE', "%$nombre%")
-        		  ->orwhere('modelo','LIKE', "%$nombre%")
-              ->orwhere('marca','LIKE', "%$nombre%")
-        		  ->orwhere('codigo_barras','LIKE', "%$nombre%")
-        		  ->orwhere('numero_parte','LIKE', "%$nombre%");
+            $query->where('codigo_barras','LIKE', "%$nombre%");
     }
 }
