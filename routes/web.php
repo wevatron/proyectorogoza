@@ -31,3 +31,12 @@ Route::resource('venta', 'VentaController');
 Route::resource('clientedescuento', 'ClienteDescuentoController');
 Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('obtener');
 Route::get('productotipoparteasync', 'ProductoController@obtener')->name('obtener');
+
+
+Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
+
+Route::get('/xx', function () {
+    return view('importExport');
+});
