@@ -37,10 +37,12 @@
 <div class="col">
       <div class="form-group">
     {!!Form::label('tipo_parte_id', 'Tipo de Parte')!!}
-    {!!Form::text('tipo_parte_id', $Productos->tipo_parte_id."-".$Productos->nombre, ['class'=> 'form-control'])!!}
-      <a id='botonauto' onclick="ocultar('tipo_parte_id','botonauto');" class="btn btn-warning">a</a>
+    {!!Form::text('tipo_parte_id',null, ['class'=> 'form-control'])!!}
+      <a id='botonauto' onclick="ocultar('tipo_parte_id','botonauto');" class="btn btn-warning">Editar</a>
   </div>
 </div>
+
+<input type="hidden" name="" value="" id="tipo_parte_id_check" required="true">
 
 <div class="col">
       <div class="form-group">
@@ -71,27 +73,34 @@
   </div>
 </div>
 
+
 <script>
 
 function ocultar(tarjet,boton){
 
       $('#'+tarjet).prop('disabled', false);
       $('#'+tarjet).val("");
+      $('#'+tarjet+'_check').val("");
       $('#'+boton).hide();
 
 }
 
 function asignarAuto(tarjet,boton){
-    if($('#'+boton).prop('disabled', false)){
-      $('#'+tarjet).prop('disabled', true);
-      $('#'+boton).show();
-    }
-}
-  $( function() {
-    if($('#tags').val()==""){
 
+    $('#'+boton).show();
+      $('#'+tarjet).prop('disabled', true);
+      $('#'+tarjet+'_check').val(1);
+      
+    
+}
+
+/*
+  $( function() {
+    if($('#tipo_parte_id').val()==""){
+
+      $('#botonauto').prop('disabled', false);
     }else{
-      $('#tags').prop('disabled', true);
+      $('#tipo_parte_id').prop('disabled', true);
       $('#botonauto').prop('disabled', false);
     }
 
@@ -99,15 +108,54 @@ function asignarAuto(tarjet,boton){
       var descuentos = [];
       for (var i=0; i<dato.length;i++)
         descuentos.push(dato[i].id+'-'+dato[i].nombre);
+
+      console.log(descuentos);
+let partes = [];
       $( "#tipo_parte_id" ).autocomplete({
-        source:descuentos,
-        onAutocomplete: function(val) {
-          asignarAuto("tags", "botonauto");
+        source:partes,
+        select: function (event, ui) { 
+         asignarAuto("tipo_parte_id", "botonauto");
+         console.log(ui.item);
         }
       });
 
+
     });
+
+
+
+
   });
+
+  */
+
+
+  $(document).ready(function() {
+    src = '/productotipoparteasync';
+
+    // Load the cities straight from the server, passing the country as an extra param
+    $("#tipo_parte_id").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: src,
+                dataType: "json",
+                data: {
+                    q: request.term
+                },
+                success: function(data) {
+                    console.log(data[0].id);
+                    response(data);
+                }
+            });
+        },
+        select: function (event, ui) { 
+         //asignarAuto("tipo_parte_id", "botonauto");
+         console.log(ui.item);
+        },
+        min_length: 3,
+        delay: 300
+    });
+});
   </script>
 
 

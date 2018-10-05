@@ -33,13 +33,6 @@
   </div>
 </div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('bodega_id', 'Bodega')!!}
-    {!!Form::number('bodega_id', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
-
   {!!Form::button("Guardar", ['type'=>'submit','class'=> 'btn btn-success'])!!}
 
   <a href=" {{route("producto.show",$id)}}" class="btn btn-warning">Regresar</a>

@@ -45,6 +45,7 @@ class StockController extends Controller
     $Stock->producto_id=$request->producto_id;
     $Stock->precio_compra=$request->precio_compra;
     $Stock->precio_venta=$request->precio_venta;
+    $Stock->bodega_id=$request->bodega_id;
     $Stock->estado_id=1;
     $Stock->save();
     return redirect()->route('producto.show',$Stock->producto_id)
@@ -59,6 +60,7 @@ class StockController extends Controller
     $Stock->producto_id=$request->producto_id;
     $Stock->precio_compra=$request->precio_compra;
     $Stock->precio_venta=$request->precio_venta;
+    $Stock->bodega_id=$request->bodega_id;
     $Stock->save();
     return redirect()->route('producto.show',$Stock->producto_id)
     ->with('info','El Stock fue guardado');

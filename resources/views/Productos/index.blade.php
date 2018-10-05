@@ -19,14 +19,10 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Descripción Corta</th>
-            <th>Descripcion Larga</th>
             <th>Modelo</th>
             <th>Marca</th>
-            <th>Tipo de Parte</th>
             <th>Codigo de Barras</th>
-            <th>Precio</th>
             <th>Precio c/IVA</th>
-            <th>Comentario</th>
             <th>Editar</th>
             <th>Agregar Stock</th>
           </tr>
@@ -37,14 +33,10 @@
             <td> {{ $Producto->id }} </td>
             <td> {{ $Producto->nombre }} </td>
             <td> {{ $Producto->descripcion_corta }}  </td>
-            <td> {{ $Producto->descripcion_larga }}  </td>
             <td> {{ $Producto->modelo }}  </td>
             <td> {{ $Producto->marca }}  </td>
-            <td> {{ $Producto->tipo_parte_id }}  </td>
             <td> {{ $Producto->codigo_barras }}  </td>
-            <td> {{ $Producto->precio }}  </td>
             <td> {{ $Producto->precioiva }}  </td>
-            <td> {{ $Producto->comentario }}  </td>
             <td> <a href=" {{route('producto.edit', ['id'=> $Producto->id] )}}  " class="btn btn-default">Editar</a> </td>
             <td> <a href=" {{route('producto.show', ['id'=> $Producto->id] )}}  " class="btn btn-success">+</a> </td>
           </tr>

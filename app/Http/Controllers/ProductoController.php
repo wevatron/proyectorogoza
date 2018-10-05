@@ -31,6 +31,7 @@ class ProductoController extends Controller
 
   public function create(){
     $Productos=Producto::all();
+    
   	return view ('Productos.create',compact('Productos'));
   }
   //'nombre','descripcion_corta','descripcion_larga','modelo','marca',
@@ -80,14 +81,31 @@ class ProductoController extends Controller
     ->with('info','El Producto fue eliminado');
   }
 
-  public function obtener(){
-    return  TipoParte::orderBy('id','desc')->where('estado_id',1)->get();
+  public function obtener(Request $req){
+    return  TipoParte::orderBy('id','desc')->where('estado_id',$req->id)->get();
   }
 
   public function show($id){
     $Productos = Producto::find($id);
-    $Stocks = Stock::orderBy('id','desc')->where('producto_id','=',$id)->where('estado_id','=',1)->paginate(20);
+    $Stocks = Stock::orderBy('stock.id','desc')
+    ->join('estado_stock', 'stock.estado_id', '=', 'estado_stock.id')
+    ->where('producto_id','=',$id)
+    ->paginate(20);
     return view ('Productos.show',compact('Productos','Stocks'));
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

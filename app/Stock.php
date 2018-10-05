@@ -8,7 +8,7 @@ class Stock extends Model
 {
     protected $table = 'stock';
   	protected $fillable = [
-  		'cantidad','proveedor_id','producto_id','precio_compra','precio_venta','estado_id',
+  		'cantidad','proveedor_id','producto_id','precio_compra','precio_venta','estado_id','bodega_id'
   	];
     public function scopeNombre($query, $nombre){
         if($nombre)

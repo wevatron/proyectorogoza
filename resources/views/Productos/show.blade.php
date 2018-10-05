@@ -31,7 +31,7 @@
       <table class="table text-center">
         <thead class="thead-dark">
           <tr>
-            <th>Id</th>
+            <th><--></th>
             <th>Cantidad</th>
             <th>Proveedor</th>
             <th>Producto</th>
@@ -43,7 +43,7 @@
         <tbody>
           @foreach($Stocks as $Stock)
           <tr>
-            <td> {{ $Stock->id }} </td>
+            <td> {{ $Stock->estado }} </td>
             <td> {{ $Stock->cantidad }} </td>
             <td> {{ $Stock->proveedor_id }}  </td>
             <td> {{ $Stock->producto_id }}  </td>

@@ -28,6 +28,7 @@ Route::resource('stock', 'StockController');
 Route::resource('tipoparte', 'TipoparteController');
 Route::resource('transaccion', 'TransaccionController');
 Route::resource('venta', 'VentaController');
+Route::resource('inventario', 'InventariosController');
 Route::resource('clientedescuento', 'ClienteDescuentoController');
 Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('obtener');
 Route::get('productotipoparteasync', 'ProductoController@obtener')->name('obtener');

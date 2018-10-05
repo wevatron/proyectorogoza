@@ -24,6 +24,7 @@
               <a class="dropdown-item" href=" {{route('producto.index')}} ">Productos</a>
               <a class="dropdown-item" href=" {{route('descuento.index')}} ">Descuentos</a>
               <a class="dropdown-item" href=" {{route('tipoparte.index')}} ">Tipos de Partes</a>
+              <a class="dropdown-item" href=" {{route('inventario.index')}} ">Inventario fisico</a>
               <div class="dropdown-divider"></div>
             </div>
           </li>

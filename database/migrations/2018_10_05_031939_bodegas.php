@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Stock extends Migration
+class Bodegas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class Stock extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('bodegas', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('cantidad');
-            $table->integer('proveedor_id');
-            $table->integer('producto_id');
-            $table->double('precio_compra');
-            $table->double('precio_venta');
-            $table->integer('estado_id'); 
-            $table->integer('bodega_id');     
+            $table->string('nombre_bodega');
             $table->timestamps();
         });
     }

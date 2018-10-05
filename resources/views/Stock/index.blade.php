@@ -12,7 +12,7 @@
       <table class="table text-center">
         <thead class="thead-dark">
           <tr>
-            <th>Id</th>
+            <th>Movimiento</th>
             <th>Cantidad</th>
             <th>Proveedor</th>
             <th>Producto</th>
