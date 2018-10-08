@@ -39,6 +39,7 @@ Route::get('puntoVenta', 'Pv@index')->name('puntoVenta');
 Route::get('azInventario', 'Pv@inventario')->name('azInventario');
 
 Route::post('stockasyn','StockController@insertar')->name('stockasyn');
+Route::get('recibo/{id}', 'Pv@recibo')->name('recibo');
 
 
 

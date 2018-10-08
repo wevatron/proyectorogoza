@@ -46,7 +46,7 @@ class StockController extends Controller
     $transaccion->tipo_transaccion_id=1;
     $transaccion->save();
 
-    for ($i=0; $i < $request->cantidad; $i++) { 
+    for ($i=0; $i < $request->cantidad; $i++) {
       $Stock = new Stock;
       $Stock->cantidad=1;
       $completo=explode( '-', strtoupper($request->proveedor_id));
@@ -59,7 +59,7 @@ class StockController extends Controller
       $Stock->transaccion_id=$transaccion->id;
       $Stock->save();
     }
-    
+
     return redirect()->route('producto.show',$Stock->producto_id)
     ->with('info','El Stock fue guardado');
   }
@@ -107,13 +107,13 @@ class StockController extends Controller
 
   public function insertar(Request $request){
 
-    $trasaccion = new Transaccion; 
+    $trasaccion = new Transaccion;
     $trasaccion->tipo_transaccion_id=2;
     $trasaccion->save();
 
     $i = 0;
       foreach ($request->lalo as $value) {
-          
+
           $stock = new Stock;
           $stock->cantidad = $value['cantidad']*-1;
           $stock->proveedor_id = 0;
@@ -124,10 +124,11 @@ class StockController extends Controller
           $stock->bodega_id = 1;
           $stock->transaccion_id = $trasaccion->id;
           $stock->save();
-          
-          //return response()->json($value); 
-      }
 
-    
+
+      }
+      return response()->json($trasaccion->id); 
+
+
   }
 }

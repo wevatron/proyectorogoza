@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Stock;
+use App\Transaccion;
 use DB;
 
 use Illuminate\Http\Request;
@@ -25,8 +27,14 @@ class Pv extends Controller
 
 	  }
 
+    public function recibo($id){
+      $transaccion = Transaccion::find($id);
+      $desglose= Stock::orderBy('id','asc')->where('transaccion_id','=',$id);
+      dd($desglose->get());
+    }
+
 	  public function index(){
-	    
+
 	    return view('pv');
 
 	  }

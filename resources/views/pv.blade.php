@@ -5,7 +5,7 @@
     <div class="col">
       <h3>Punto de venta.</h3>
 
-      
+
      <div class="row" style="margin-bottom: 3%">
       <div class="col col-lg-6 offset-lg-6">
         <div class="input-group input-group-lg">
@@ -18,17 +18,17 @@
                 </div>
           </div>
       </div>
-            
+
      </div>
 
-  
+
     <div class="input-group mb-3">
       {!! Form::text('cliente_id', null, ['class'=>'form-control', 'id'=>'cliente_id', 'placeholder'=>'Codigo']) !!}
       <div class="input-group-append">
         <a href=" {{route('cliente.create')}} " target="_blank"><button class="btn btn-outline-primary" type="button" id="button-addon2">Agregar cliente</button></a>
       </div>
     </div>
-                 
+
 
       <table class="table text-center">
         <thead class="thead-dark">
@@ -38,16 +38,16 @@
             <th>Precio Unitario</th>
             <th>Precio Total</th>
             <th></th>
-            
+
           </tr>
         </thead>
         <tbody id="t_productos_venta_id" >
 
-    
+
 
         </tbody>
       </table>
-    
+
     </div>
   </div>
 
@@ -119,7 +119,7 @@
                 </div>
           </div>
 
-          
+
 
         <input type="hidden" id="d_idproducto_id" name="">
 
@@ -143,7 +143,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        
+
         <h4 class="modal-title" id="myModalLabel">¿Quieres terminar la venta?</h4>
       </div>
       <div class="modal-footer">
@@ -159,7 +159,7 @@
 
 
 var modalConfirm = function(callback){
-  
+
   $("#btn_cobrar_id").on("click", function(){
     $("#mi-modal").modal('show');
   });
@@ -168,7 +168,7 @@ var modalConfirm = function(callback){
     callback(true);
     $("#mi-modal").modal('hide');
   });
-  
+
   $("#modal-btn-no").on("click", function(){
     callback(false);
     $("#mi-modal").modal('hide');
@@ -180,7 +180,7 @@ modalConfirm(function(confirm){
     //Acciones si el usuario confirma
     comprar();
   }else{
-    
+
   }
 });
 
@@ -192,7 +192,7 @@ modalConfirm(function(confirm){
     $("#cliente_id").focus();
 
   function agregarACarrito() {
-    
+
 
     let = cantidad = parseInt($("#d_cantidad_id").val());
     let = existencias = parseInt($("#p_existencias_id").val());
@@ -219,15 +219,15 @@ modalConfirm(function(confirm){
                  <td><a class="btn btn-danger" href="#!" onclick="eliminarCarrito(${nInsert-1});"><i class="material-icons">delete</i></a></td>
                  <tr>`;
     sumarTotal();
-    
+
     $("#t_productos_venta_id").append(row);
     $('#exampleModalCenter').modal('hide');
     limpiarModal();
     }else{
       alert("Agrega la cantidad o verificar existencias");
     }
-    
-    
+
+
   }
 
   function verArray(argument) {
@@ -242,7 +242,7 @@ modalConfirm(function(confirm){
     $.ajax({
           type: "POST",
           url: '/stockasyn',
-          data: { 
+          data: {
             somefield: "Some field value",
              _token: '{{csrf_token()}}',
              lalo:insert
@@ -250,6 +250,9 @@ modalConfirm(function(confirm){
               },
           success: function (data) {
              limpriaCobro();
+             console.log(data);
+             location="/recibo/"+data;
+
           },
           error: function (data, textStatus, errorThrown) {
               console.log(data);
@@ -263,14 +266,14 @@ modalConfirm(function(confirm){
       $('#'+target.substr(2)).val("");
     }
      $(document).ready(function() {
-      
+
 
       $( "#cliente_id" ).autocomplete({
             source:'{!!URL::route('azInventario')!!}',
             minlength:1,
             autoFocus:true,
-               change: function (event, ui) { 
-                 
+               change: function (event, ui) {
+
              },
             select:function(e,ui)
             {
@@ -281,20 +284,20 @@ modalConfirm(function(confirm){
               $("#p_existencias_id").val(ui.item.existencias-existenciaLocal(ui.item.producto_id,insert));
               $("#d_idproducto_id").val(ui.item.producto_id);
               $("#d_piva_id").val(ui.item.iva);
-              
+
               console.log();
-             
+
             }
-        });    
+        });
 
 
     });
 
     $('#exampleModalCenter').on('hidden.bs.modal', function (e) {
-             limpiarModal();      
+             limpiarModal();
     });
     $('#exampleModalCenter').on('shown.bs.modal', function (e) {
-             $("#d_cantidad_id").focus();      
+             $("#d_cantidad_id").focus();
     });
 
 function eliminarCarrito(index) {
@@ -340,21 +343,21 @@ function limpiarModal(argument) {
                 $("#btn_cobrar_id").show();
               }
        });
-       
+
      }
 
      function limpriaCobro() {
            costo_productos.length = 0;
            insert.length = 0;
            total = 0;
-           
+
            $("#d_total_id").val(0);
            $("#t_productos_venta_id").empty();
            $("#btn_cobrar_id").hide();
      }
 
 
-  
+
 </script>
 
 
@@ -366,16 +369,3 @@ function limpiarModal(argument) {
 
 
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
