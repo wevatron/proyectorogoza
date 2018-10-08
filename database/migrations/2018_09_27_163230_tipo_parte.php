@@ -16,7 +16,6 @@ class TipoParte extends Migration
         Schema::create('tipo_partes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion');
             $table->integer('estado_id');
             $table->timestamps();
         });

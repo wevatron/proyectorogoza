@@ -36,7 +36,6 @@ class TipoParteController extends Controller
   public function store(TipoParteRequest $request){
     $TipoPartes = new TipoParte;
     $TipoPartes->nombre=strtoupper($request->nombre);
-    $TipoPartes->descripcion=strtoupper($request->descripcion);
     $TipoPartes->estado_id=1;
     $TipoPartes->save();
     return redirect()->route('tipoparte.index')
@@ -46,7 +45,6 @@ class TipoParteController extends Controller
   public function update(TipoParteRequest $request, $id){
     $TipoPartes = TipoParte::find($id);
     $TipoPartes->nombre=strtoupper($request->nombre);
-    $TipoPartes->descripcion=strtoupper($request->descripcion);
     $TipoPartes->save();
 	  return redirect()->route('tipoparte.index')
     ->with('info','El Tipo de parte fue actualizado');

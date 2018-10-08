@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Stock;
 use App\Proveedor;
+use App\producto;
+use App\Transaccion;
 use App\Http\Requests\StockRequest;
 use DB;
 
@@ -34,21 +36,30 @@ class StockController extends Controller
   }
 
   public function show($id){
-
-    return view ('Stock.create',compact('id'));
+    $producto= Producto::find($id);
+    $precioIva = [$producto->precioiva*1.40,$producto->descripcion_corta];
+    return view ('Stock.create',compact('id', 'precioIva'));
   }
 
   public function store(StockRequest $request){
-    $Stock = new Stock;
-    $Stock->cantidad=$request->cantidad;
-    $completo=explode( '-', strtoupper($request->proveedor_id));
-    $Stock->proveedor_id=strtoupper($completo[0]);
-    $Stock->producto_id=$request->producto_id;
-    $Stock->precio_compra=$request->precio_compra;
-    $Stock->precio_venta=$request->precio_venta;
-    $Stock->bodega_id=$request->bodega_id;
-    $Stock->estado_id=1;
-    $Stock->save();
+    $transaccion = new Transaccion;
+    $transaccion->tipo_transaccion_id=1;
+    $transaccion->save();
+
+    for ($i=0; $i < $request->cantidad; $i++) { 
+      $Stock = new Stock;
+      $Stock->cantidad=1;
+      $completo=explode( '-', strtoupper($request->proveedor_id));
+      $Stock->proveedor_id=strtoupper($completo[0]);
+      $Stock->producto_id=$request->producto_id;
+      $Stock->precio_compra=$request->precio_compra;
+      $Stock->precio_venta=0;
+      $Stock->bodega_id=$request->bodega_id;
+      $Stock->estado_id=1;
+      $Stock->transaccion_id=$transaccion->id;
+      $Stock->save();
+    }
+    
     return redirect()->route('producto.show',$Stock->producto_id)
     ->with('info','El Stock fue guardado');
   }
@@ -68,6 +79,8 @@ class StockController extends Controller
   }
 
   public function destroy($id){
+
+
     $Stock = Stock::find($id);
     $Stock->estado_id=3;
     $Stock->save();
@@ -92,35 +105,29 @@ class StockController extends Controller
 
   }
 
-  public function insertar(){
+  public function insertar(Request $request){
 
-    foreach ($_POST['lalo'] as $value) {
-        
-        $stock = new Stock;
-        $stock->cantidad = 10;
-        $stock->proveedor_id = 0;
-        $stock->producto_id = 0;
-        $stock->precio_compra = 100;
-        $stock->precio_venta = 120;
-        $stock->estado_id = 2;
-        $stock->bodega_id = 1;
-        $stock->save();
-    }
+    $trasaccion = new Transaccion; 
+    $trasaccion->tipo_transaccion_id=2;
+    $trasaccion->save();
 
+    $i = 0;
+      foreach ($request->lalo as $value) {
+          
+          $stock = new Stock;
+          $stock->cantidad = $value['cantidad']*-1;
+          $stock->proveedor_id = 0;
+          $stock->producto_id = $value['producto_id'];
+          $stock->precio_compra = $value['costo_iva'];
+          $stock->precio_venta = $value['costo_iva']*1.4;
+          $stock->estado_id = 2;
+          $stock->bodega_id = 1;
+          $stock->transaccion_id = $trasaccion->id;
+          $stock->save();
+          
+          //return response()->json($value); 
+      }
 
-    echo "ok";
-    /*
-
-    $Stock = new Stock;
-    $Stock->cantidad=$cantidad;
-    $completo=explode( '-', strtoupper($proveedor_id));
-    $Stock->proveedor_id=strtoupper($completo[0]);
-    $Stock->producto_id=$producto_id;
-    $Stock->precio_compra=$precio_compra;
-    $Stock->precio_venta=$precio_venta;
-    $Stock->bodega_id=$bodega_id;
-    $Stock->estado_id=1;
-    $Stock->save();
-    */
+    
   }
 }

@@ -31,7 +31,7 @@
       <table class="table text-center">
         <thead class="thead-dark">
           <tr>
-            <th><--></th>
+            
             <th><--></th>
             <th>Cantidad</th>
             <th>Proveedor</th>
@@ -44,7 +44,7 @@
         <tbody>
           @foreach($Stocks as $Stock)
           <tr>
-            <td> {{ $Stock->id }} </td>
+            
             <td> {{ $Stock->estado }} </td>
             <td> {{ $Stock->cantidad }} </td>
             <td> {{ $Stock->proveedor_id }}  </td>
@@ -52,7 +52,7 @@
             <td> {{ $Stock->precio_compra }}  </td>
             <td> {{ $Stock->precio_venta }}  </td>
             <td>
-              <form action="{{route('stock.destroy',$Stock->id)}}" method="POST" onsubmit = 'return confirm("¿Seguro que desea eliminarlo?")'>
+              <form action="{{route('stock.destroy',$Stock->sid)}}" method="POST" onsubmit = 'return confirm("¿Seguro que desea eliminarlo?")'>
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="btn btn-danger" id="btndel_id" style="margin-top: 15px" >Cancelar</button>

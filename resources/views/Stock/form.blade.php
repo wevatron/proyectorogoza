@@ -1,4 +1,5 @@
 
+<h4>{{$precioIva[1]}}</h4>
 <div class="col">
   <div class="form-group">
     {!!Form::text('producto_id', $id, ['class'=> 'form-control','hidden'])!!}
@@ -24,16 +25,11 @@
 <div class="col">
       <div class="form-group">
     {!!Form::label('precio_compra', 'Precio de Compra')!!}
-    {!!Form::number('precio_compra', null, ['class'=> 'form-control'])!!}
+    {!!Form::number('precio_compra', $precioIva[0], ['class'=> 'form-control'])!!}
   </div>
 </div>
 
-<div class="col">
-      <div class="form-group">
-    {!!Form::label('precio_venta', 'Precio de Venta')!!}
-    {!!Form::number('precio_venta', null, ['class'=> 'form-control'])!!}
-  </div>
-</div>
+
 
 <div class="col">
       <div class="form-group">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Transaccion extends Migration
+class TipoTransaccion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class Transaccion extends Migration
      */
     public function up()
     {
-        Schema::create('transacciones', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('tipo_transaccion_id');    
+        Schema::create('tipo_transaccion', function (Blueprint $table) {
+            $table->increments('id');   
+            $table->string('tipo');   
             $table->timestamps();
         });
-
     }
 
     /**

@@ -378,6 +378,7 @@ class ComposerStaticInitd49ef52e7cdbef814c5bc3aa7ab687ef
         'App\\Http\\Controllers\\MaatwebsiteDemoController' => __DIR__ . '/../..' . '/app/Http/Controllers/MaatwebsiteDemoController.php',
         'App\\Http\\Controllers\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoController.php',
         'App\\Http\\Controllers\\ProveedorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedorController.php',
+        'App\\Http\\Controllers\\Pv' => __DIR__ . '/../..' . '/app/Http/Controllers/Pv.php',
         'App\\Http\\Controllers\\StockController' => __DIR__ . '/../..' . '/app/Http/Controllers/StockController.php',
         'App\\Http\\Controllers\\TipoParteController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoParteController.php',
         'App\\Http\\Controllers\\TransaccionController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransaccionController.php',
@@ -411,10 +412,12 @@ class ComposerStaticInitd49ef52e7cdbef814c5bc3aa7ab687ef
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Stock' => __DIR__ . '/../..' . '/app/Stock.php',
         'App\\TipoParte' => __DIR__ . '/../..' . '/app/TipoParte.php',
+        'App\\Tipo_transaccion' => __DIR__ . '/../..' . '/app/Tipo_transaccion.php',
         'App\\Transaccion' => __DIR__ . '/../..' . '/app/Transaccion.php',
         'App\\TransaccionDescuentoRelacion' => __DIR__ . '/../..' . '/app/TransaccionDescuentoRelacion.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Venta' => __DIR__ . '/../..' . '/app/Venta.php',
+        'App\\estado_stock' => __DIR__ . '/../..' . '/app/estado_stock.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
@@ -3989,6 +3992,8 @@ class ComposerStaticInitd49ef52e7cdbef814c5bc3aa7ab687ef
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'bodegasseeder' => __DIR__ . '/../..' . '/database/seeds/bodegasseeder.php',
+        'estadostockseeder' => __DIR__ . '/../..' . '/database/seeds/estadostockseeder.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
@@ -4057,6 +4062,7 @@ class ComposerStaticInitd49ef52e7cdbef814c5bc3aa7ab687ef
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'tipotransseeder' => __DIR__ . '/../..' . '/database/seeds/tipotransseeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

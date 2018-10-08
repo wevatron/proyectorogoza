@@ -17,10 +17,11 @@ class InventariosController extends Controller
     {
         $Stock = DB::table('stock')
         ->join('productos', 'stock.producto_id', '=', 'productos.id')
-        ->selectRaw('producto_id, sum(cantidad) existencias, productos.descripcion_larga as descripcion, productos.codigo_barras as codigo, productos.precioiva as iva')
+        ->selectRaw('producto_id, sum(cantidad) as existencias, productos.descripcion_larga as descripcion, productos.codigo_barras as codigo, productos.precioiva as iva')
         ->groupBy('producto_id')
         ->havingRaw('SUM(cantidad) > 0')
-        ->where('stock.estado_id', '=', 1)->paginate(1);
+        ->whereIn('stock.estado_id', array(1,2))
+        ->paginate(10);
         //dd($Stock->all());
         return view('inventario.index', compact('Stock'));
     }

@@ -25,7 +25,6 @@ class TipoParteRequest extends FormRequest
     {
         return [
             'nombre' => 'required',
-            'descripcion' => 'required',
 
         ];
     }

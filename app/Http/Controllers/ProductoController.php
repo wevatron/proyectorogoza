@@ -97,11 +97,12 @@ class ProductoController extends Controller
   public function show($id){
     $Productos = Producto::find($id);
     $Stocks = Stock::orderBy('stock.id','desc')
-    ->join('estado_stock', 'stock.estado_id', '=', 'estado_stock.id_estado')
+    ->selectRaw(' * , stock.id as sid')
+    ->join('estado_stock', 'stock.estado_id', '=', 'estado_stock.id')
     ->where('producto_id','=',$id)
-    ->where('estado_id','=',1)
-    ->orwhere('estado_id','=',1)
+    ->whereIn('estado_id',[1,2])
     ->paginate(20);
+    
     return view ('Productos.show3',compact('Productos','Stocks'));
   }
 

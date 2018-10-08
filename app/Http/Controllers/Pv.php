@@ -14,11 +14,14 @@ class Pv extends Controller
         ->selectRaw('producto_id, sum(cantidad) existencias, productos.descripcion_larga as descripcion, productos.codigo_barras as codigo, productos.precioiva as iva, productos.nombre as label')
         ->groupBy('producto_id')
         ->havingRaw('SUM(cantidad) > 0')
-        ->where('stock.estado_id', '=', 1)->get();
+        ->whereIn('stock.estado_id', array(1,2))
+        ->orwhereRaw(" REPLACE(codigo_barras, '-', '')  like '%$req%'")
+        ->orWhereRaw(" codigo_barras  like '%$req%'")
+        ->limit(5)->get();
 
         return $Stock->toJson();
 
-	    dd($Stock->toJson());
+	    //dd($Stock->toJson());
 
 	  }
 

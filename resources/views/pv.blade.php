@@ -52,10 +52,7 @@
   </div>
 
 
-<a href="#!" onclick="comprar();" id="btn_cobrar_id" style="display: none;" class="btn btn-success"> Cobrar </a>
-
-<a href="#!" onclick="verArray();" id="btn_cobrar_id"  class="btn btn-success"> ver </a>
-
+<a href="#!"  id="btn_cobrar_id" style="display: none;" class="btn btn-success"> Cobrar </a>
 
 
 <!-- Modal -->
@@ -138,10 +135,60 @@
 
 
 
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title" id="myModalLabel">¿Quieres terminar la venta?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <script type="text/javascript">
+
+
+var modalConfirm = function(callback){
+  
+  $("#btn_cobrar_id").on("click", function(){
+    $("#mi-modal").modal('show');
+  });
+
+  $("#modal-btn-si").on("click", function(){
+    callback(true);
+    $("#mi-modal").modal('hide');
+  });
+  
+  $("#modal-btn-no").on("click", function(){
+    callback(false);
+    $("#mi-modal").modal('hide');
+  });
+};
+
+modalConfirm(function(confirm){
+  if(confirm){
+    //Acciones si el usuario confirma
+    comprar();
+  }else{
+    
+  }
+});
+
+
+
     const costo_productos = new Array();
     const insert = new Array();
-    const total = 0;
+    var total = 0;
     $("#cliente_id").focus();
 
   function agregarACarrito() {
@@ -202,7 +249,7 @@
 
               },
           success: function (data) {
-             console.log(data);
+             limpriaCobro();
           },
           error: function (data, textStatus, errorThrown) {
               console.log(data);
@@ -294,6 +341,16 @@ function limpiarModal(argument) {
               }
        });
        
+     }
+
+     function limpriaCobro() {
+           costo_productos.length = 0;
+           insert.length = 0;
+           total = 0;
+           
+           $("#d_total_id").val(0);
+           $("#t_productos_venta_id").empty();
+           $("#btn_cobrar_id").hide();
      }
 
 

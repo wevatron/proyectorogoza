@@ -26,8 +26,8 @@ class Producto extends Migration
             $table->double('precio')->nullable();
             $table->double('precioiva')->nullable();
             $table->string('comentario')->nullable();
-            $table->integer('stock_id')->nullable();
             $table->integer('estado_id')->nullable();
+            $table->integer('transaccion_id')->nullable();
             $table->timestamps();
         });
 

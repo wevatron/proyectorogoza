@@ -28,7 +28,6 @@ class StockRequest extends FormRequest
             'proveedor_id' => 'required',
             'producto_id' => 'required',
             'precio_compra' => 'required',
-            'precio_venta' => 'required',
             'bodega_id' => 'required'
 
         ];

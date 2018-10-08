@@ -13,7 +13,6 @@ class TipoParte extends Model
     public function scopeNombre($query, $nombre){
         if($nombre)
             $query->where('nombre','LIKE', "%$nombre%")
-        		  ->orwhere('descripcion','LIKE', "%$nombre%")
         		  ->orwhere('estado_id','LIKE', "%$nombre%");
     }
 }
