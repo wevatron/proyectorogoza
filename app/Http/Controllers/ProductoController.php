@@ -8,6 +8,7 @@ use App\Producto;
 use App\Stock;
 use App\TipoPArte;
 use App\Http\Requests\ProductoRequest;
+use DB;
 
 class ProductoController extends Controller
 {
@@ -18,7 +19,7 @@ class ProductoController extends Controller
   public function index(Request $request){
     $nombre = $request->get('nombre');
     $Productos=Producto::orderBy('id','desc')
-                  ->where('estado_id',1)
+                  ->where('estado_id','=',1)
                   ->nombre($nombre)
                   ->paginate(20);
     return view('Productos.index',compact('Productos'));
@@ -26,7 +27,11 @@ class ProductoController extends Controller
 
   public function edit($id){
   	$Productos=Producto::find($id);
-  	return view ('Productos.edit',compact('Productos'));
+    $tipo_partes = DB::table('tipo_partes')->select('nombre')
+    ->where('id', '=', $Productos->tipo_parte_id)->limit(1)->get();
+    //dd($tipo_partes[0]->id);
+  	return view ('Productos.edit',compact('Productos','tipo_partes'));
+   
   }
 
   public function create(){
@@ -82,16 +87,22 @@ class ProductoController extends Controller
   }
 
   public function obtener(Request $req){
-    return  TipoParte::orderBy('id','desc')->where('estado_id',$req->id)->get();
+    return  DB::table('tipo_partes')
+    ->where('nombre', 'like', "%$req->nombre%")
+    ->select('nombre as label','nombre as value','id as miid' )
+    ->limit(5)
+    ->get();
   }
 
   public function show($id){
     $Productos = Producto::find($id);
     $Stocks = Stock::orderBy('stock.id','desc')
-    ->join('estado_stock', 'stock.estado_id', '=', 'estado_stock.id')
+    ->join('estado_stock', 'stock.estado_id', '=', 'estado_stock.id_estado')
     ->where('producto_id','=',$id)
+    ->where('estado_id','=',1)
+    ->orwhere('estado_id','=',1)
     ->paginate(20);
-    return view ('Productos.show',compact('Productos','Stocks'));
+    return view ('Productos.show3',compact('Productos','Stocks'));
   }
 
 }

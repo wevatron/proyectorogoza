@@ -8,6 +8,6 @@
   <form action="{{route('stock.destroy',$Stock->id)}}" method="POST" onsubmit = 'return confirm("¿Seguro que desea eliminarlo?")'>
     {{csrf_field()}}
     <input type="hidden" name="_method" value="DELETE" >
-    <button class="btn btn-danger">Eliminar</button>
+    <button class="btn btn-danger">Eliminarrrrrrrrrrrrr</button>
   </form>
 @endsection

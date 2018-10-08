@@ -36,13 +36,20 @@
 
 <div class="col">
       <div class="form-group">
-    {!!Form::label('tipo_parte_id', 'Tipo de Parte')!!}
-    {!!Form::text('tipo_parte_id',null, ['class'=> 'form-control'])!!}
-      <a id='botonauto' onclick="ocultar('tipo_parte_id','botonauto');" class="btn btn-warning">Editar</a>
+    {!!Form::label('l_tipo_parte_id', 'Tipo de Parte')!!}
+    @if(isset($tipo_partes[0]->nombre) )
+    {!!Form::text('l_tipo_parte_id',$tipo_partes[0]->nombre, ['class'=> 'form-control', 'disabled'])!!}
+    @else
+    {!!Form::text('l_tipo_parte_id',null, ['class'=> 'form-control', 'disabled'])!!}
+    @endif
+    {{ Form::hidden('tipo_parte_id', null, array('id' => 'tipo_parte_id')) }} 
+     
+      <a id='btn_tipo_parte_id' onclick="limpiar('l_tipo_parte_id');" href="#!"><i class="material-icons">edit</i>
+</a>
   </div>
 </div>
 
-<input type="hidden" name="" value="" id="tipo_parte_id_check" required="true">
+
 
 <div class="col">
       <div class="form-group">
@@ -76,85 +83,32 @@
 
 <script>
 
-function ocultar(tarjet,boton){
-
-      $('#'+tarjet).prop('disabled', false);
-      $('#'+tarjet).val("");
-      $('#'+tarjet+'_check').val("");
-      $('#'+boton).hide();
-
-}
-
-function asignarAuto(tarjet,boton){
-
-    $('#'+boton).show();
-      $('#'+tarjet).prop('disabled', true);
-      $('#'+tarjet+'_check').val(1);
-      
-    
-}
-
-/*
-  $( function() {
-    if($('#tipo_parte_id').val()==""){
-
-      $('#botonauto').prop('disabled', false);
-    }else{
-      $('#tipo_parte_id').prop('disabled', true);
-      $('#botonauto').prop('disabled', false);
+    function limpiar(target){
+      $('#'+target).attr('disabled', false).val('').focus();
+      $('#'+target.substr(2)).val("");
     }
-
-    $.get('/productotipoparteasync',function(dato){
-      var descuentos = [];
-      for (var i=0; i<dato.length;i++)
-        descuentos.push(dato[i].id+'-'+dato[i].nombre);
-
-      console.log(descuentos);
-let partes = [];
-      $( "#tipo_parte_id" ).autocomplete({
-        source:partes,
-        select: function (event, ui) { 
-         asignarAuto("tipo_parte_id", "botonauto");
-         console.log(ui.item);
-        }
-      });
-
-
-    });
-
-
-
-
-  });
-
-  */
 
 
   $(document).ready(function() {
-    src = '/productotipoparteasync';
 
-    // Load the cities straight from the server, passing the country as an extra param
-    $("#tipo_parte_id").autocomplete({
-        source: function(request, response) {
-            $.ajax({
-                url: src,
-                dataType: "json",
-                data: {
-                    q: request.term
-                },
-                success: function(data) {
-                    console.log(data[0].id);
-                    response(data);
-                }
-            });
-        },
-        select: function (event, ui) { 
-         //asignarAuto("tipo_parte_id", "botonauto");
-         console.log(ui.item);
-        },
-        min_length: 3,
-        delay: 300
-    });
+
+
+    $( "#l_tipo_parte_id" ).autocomplete({
+            source:'{!!URL::route('productotipoparteasync')!!}',
+            minlength:1,
+            autoFocus:true,
+               change: function (event, ui) { 
+                 
+             },
+            select:function(e,ui)
+            {
+
+              $('#tipo_parte_id').val(ui.item.miid);
+              $('#l_tipo_parte_id').attr('disabled', true)
+              
+             
+            }
+        });    
 });
   </script>
 

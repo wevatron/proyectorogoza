@@ -5,7 +5,7 @@
 
   <div class="row" style="margin-top: 0px">
     <div class="col">
-      <h3>Gestión del Stock/Inventario Físico</h3>
+      <h3>Gestión del Stock/Inventario Físico dd</h3>
 
 
       <div class="card" style="width: 18rem;">
@@ -14,7 +14,7 @@
           Nombre: {{$Productos->nombre}}
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Descripcion: {{$Productos->descripcion_corta}}</li>
+          <li class="list-group-item">Descripcion:  {{$Productos->descripcion_corta}}</li>
           <li class="list-group-item">Modelo: {{$Productos->modelo}}</li>
           <li class="list-group-item">Marca: {{$Productos->marca}}</li>
           <li class="list-group-item">Codigo de Barras {{$Productos->codigo_barras}}</li>
@@ -32,6 +32,7 @@
         <thead class="thead-dark">
           <tr>
             <th><--></th>
+            <th><--></th>
             <th>Cantidad</th>
             <th>Proveedor</th>
             <th>Producto</th>
@@ -43,6 +44,7 @@
         <tbody>
           @foreach($Stocks as $Stock)
           <tr>
+            <td> {{ $Stock->id }} </td>
             <td> {{ $Stock->estado }} </td>
             <td> {{ $Stock->cantidad }} </td>
             <td> {{ $Stock->proveedor_id }}  </td>
@@ -53,7 +55,7 @@
               <form action="{{route('stock.destroy',$Stock->id)}}" method="POST" onsubmit = 'return confirm("¿Seguro que desea eliminarlo?")'>
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="DELETE">
-                <button class="btn btn-danger" id="btndel_id" style="margin-top: 15px" >Eliminar</button>
+                <button class="btn btn-danger" id="btndel_id" style="margin-top: 15px" >Cancelar</button>
               </form>
             </td>
           </tr>

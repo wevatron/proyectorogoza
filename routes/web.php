@@ -30,13 +30,16 @@ Route::resource('transaccion', 'TransaccionController');
 Route::resource('venta', 'VentaController');
 Route::resource('inventario', 'InventariosController');
 Route::resource('clientedescuento', 'ClienteDescuentoController');
-Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('obtener');
-Route::get('productotipoparteasync', 'ProductoController@obtener')->name('obtener');
-Route::get('proveedorasync', 'StockController@obtener')->name('obtener');
+Route::get('clientedescuentoasync', 'ClienteController@obtener')->name('clientedescuentoasync');
+Route::get('productotipoparteasync', 'ProductoController@obtener')->name('productotipoparteasync');
+Route::get('proveedorasync', 'StockController@obtener')->name('proveedorasync');
+Route::get('bodegaasync', 'StockController@obtenerBodega')->name('bodegaasync');
 
-Route::get('/puntoVenta', function (){
-	return view('pv');
-});
+Route::get('puntoVenta', 'Pv@index')->name('puntoVenta');
+Route::get('azInventario', 'Pv@inventario')->name('azInventario');
+
+Route::post('stockasyn','StockController@insertar')->name('stockasyn');
+
 
 
 Route::get('importExport', 'MaatwebsiteDemoController@importExport');

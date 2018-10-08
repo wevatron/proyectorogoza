@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Stock;
 use App\Proveedor;
 use App\Http\Requests\StockRequest;
+use DB;
 
 class StockController extends Controller
 {
@@ -68,15 +69,58 @@ class StockController extends Controller
 
   public function destroy($id){
     $Stock = Stock::find($id);
-    
-    $Stock->estado_id=2;
+    $Stock->estado_id=3;
     $Stock->save();
     return redirect()->route('producto.show',$Stock->producto_id)
     ->with('info','El Stock fue guardado');
   }
 
-  public function obtener(){
-    return  Proveedor::orderBy('id','desc')->where('estado_id',1)->get();
+  public function obtener(Request $req){
+    return  DB::table('proveedores')
+    ->where('nombre', 'like', "%$req->nombre%")
+    ->select('nombre as label','nombre as value','id as miid' )
+    ->limit(5)
+    ->get();
 
+  }
+  public function obtenerBodega(Request $req){
+    return  DB::table('bodegas')
+    ->where('nombre_bodega', 'like', "%$req->nombre%")
+    ->select('nombre_bodega as label','nombre_bodega as value','id as miid' )
+    ->limit(5)
+    ->get();
+
+  }
+
+  public function insertar(){
+
+    foreach ($_POST['lalo'] as $value) {
+        
+        $stock = new Stock;
+        $stock->cantidad = 10;
+        $stock->proveedor_id = 0;
+        $stock->producto_id = 0;
+        $stock->precio_compra = 100;
+        $stock->precio_venta = 120;
+        $stock->estado_id = 2;
+        $stock->bodega_id = 1;
+        $stock->save();
+    }
+
+
+    echo "ok";
+    /*
+
+    $Stock = new Stock;
+    $Stock->cantidad=$cantidad;
+    $completo=explode( '-', strtoupper($proveedor_id));
+    $Stock->proveedor_id=strtoupper($completo[0]);
+    $Stock->producto_id=$producto_id;
+    $Stock->precio_compra=$precio_compra;
+    $Stock->precio_venta=$precio_venta;
+    $Stock->bodega_id=$bodega_id;
+    $Stock->estado_id=1;
+    $Stock->save();
+    */
   }
 }
