@@ -23,11 +23,20 @@
 
 
     <div class="input-group mb-3">
-      {!! Form::text('cliente_id', null, ['class'=>'form-control', 'id'=>'cliente_id', 'placeholder'=>'Codigo']) !!}
+      {!! Form::text('codigo_id', null, ['class'=>'form-control', 'id'=>'codigo_id', 'placeholder'=>'Codigo de barras de producto']) !!}
       <div class="input-group-append">
-        <a href=" {{route('cliente.create')}} " target="_blank"><button class="btn btn-outline-primary" type="button" id="button-addon2">Agregar cliente</button></a>
+        <a href=" {{route('cliente.create')}} " target="_blank"><button class="btn btn-outline-primary" type="button" id="button-addon2">Alta de cliente</button></a>
       </div>
     </div>
+
+
+    <div class="input-group mb-3">
+      {!! Form::text('cliente_id', null, ['class'=>'form-control', 'id'=>'cliente_id', 'placeholder'=>'Buscar cliente']) !!}
+      <div class="input-group-append">
+        <a href="#!" onclick="limpiarCliente()"><button class="btn btn-outline-primary" type="button" id="">Cambiar cliente</button></a>
+      </div>
+    </div>
+
 
 
       <table class="table text-center">
@@ -189,7 +198,9 @@ modalConfirm(function(confirm){
     const costo_productos = new Array();
     const insert = new Array();
     var total = 0;
-    $("#cliente_id").focus();
+    var idCliente ="";
+
+    $("#codigo_id").focus();
 
   function agregarACarrito() {
 
@@ -237,20 +248,21 @@ modalConfirm(function(confirm){
 
   function comprar() {
     // body...
-
-
-    $.ajax({
+    if (idCliente != "") {
+      $.ajax({
           type: "POST",
           url: '/stockasyn',
           data: {
             somefield: "Some field value",
              _token: '{{csrf_token()}}',
-             lalo:insert
+             lalo:insert,
+             idCliente:idCliente
 
               },
           success: function (data) {
              limpriaCobro();
-             console.log(data);
+             limpiarCliente();
+             //console.log(data);
              location="/recibo/"+data;
 
           },
@@ -259,6 +271,9 @@ modalConfirm(function(confirm){
 
           },
       });
+    }else{
+      alert("Agregue cliente");
+    }
   }
 
   function limpiar(target){
@@ -268,7 +283,7 @@ modalConfirm(function(confirm){
      $(document).ready(function() {
 
 
-      $( "#cliente_id" ).autocomplete({
+      $( "#codigo_id" ).autocomplete({
             source:'{!!URL::route('azInventario')!!}',
             minlength:1,
             autoFocus:true,
@@ -285,7 +300,24 @@ modalConfirm(function(confirm){
               $("#d_idproducto_id").val(ui.item.producto_id);
               $("#d_piva_id").val(ui.item.iva);
 
-              console.log();
+              //console.log();
+
+            }
+        });
+
+
+      $( "#cliente_id" ).autocomplete({
+            source:'{!!URL::route('azCliente')!!}',
+            minlength:1,
+            autoFocus:true,
+               change: function (event, ui) {
+
+             },
+            select:function(e,ui)
+            {
+              idCliente = ui.item.id;
+              $("#cliente_id").attr("disabled", true);
+             // console.log(ui.item);
 
             }
         });
@@ -311,7 +343,7 @@ function limpiarModal(argument) {
   $("#p_nombre_id").val("");
               $("#p_descripcion_id").val("");
               $("#p_existencias_id").val("");
-              $("#cliente_id").val("");
+              $("#codigo_id").val("");
               $("#d_idproducto_id").val("");
               $("#d_piva_id").val("");
 
@@ -350,10 +382,19 @@ function limpiarModal(argument) {
            costo_productos.length = 0;
            insert.length = 0;
            total = 0;
+           idCliente = "";
 
            $("#d_total_id").val(0);
            $("#t_productos_venta_id").empty();
            $("#btn_cobrar_id").hide();
+     }
+
+     function limpiarCliente() {
+       $("#cliente_id").val("");
+       $("#cliente_id").attr("disabled",false);
+       idCliente = "";
+
+
      }
 
 

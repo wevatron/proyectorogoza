@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Stock;
 use App\Transaccion;
 use DB;
+use App\Cliente;
 
 use Illuminate\Http\Request;
 
@@ -18,8 +19,7 @@ class Pv extends Controller
         ->havingRaw('SUM(cantidad) > 0')
         ->whereIn('stock.estado_id', array(1,2))
         ->orwhereRaw(" REPLACE(codigo_barras, '-', '')  like '%$req%'")
-        ->orWhereRaw(" codigo_barras  like '%$req%'")
-        ->limit(5)->get();
+        ->orWhereRaw(" codigo_barras  like '%$req%'")->get();
 
         return $Stock->toJson();
 
@@ -29,8 +29,24 @@ class Pv extends Controller
 
     public function recibo($id){
       $transaccion = Transaccion::find($id);
-      $desglose= Stock::orderBy('id','asc')->where('transaccion_id','=',$id);
-      dd($desglose->get());
+      $cliente = Cliente::find($transaccion->cliente_id);
+
+      $desgloses= DB::table('stock')
+      ->join('productos', 'stock.producto_id', '=', 'productos.id')
+      ->selectRaw('*,stock.id as stock__id, productos.id as productos__id')
+      ->where('stock.transaccion_id','=',$transaccion->id)
+      ->paginate(50);
+      //dd($desgloses);
+      return view('recibo',compact('transaccion','desgloses','cliente'));
+    }
+
+    public function cliente(Request $req)
+    {
+      $cliente = DB::table('clientes')
+        ->selectRaw(' nombre as value, nombre as label, id ')
+        ->orwhereRaw(" nombre  like '%$req->nombre%' ")->get();
+
+      return $cliente->toJson();
     }
 
 	  public function index(){
@@ -39,3 +55,15 @@ class Pv extends Controller
 
 	  }
 }
+
+
+
+
+
+
+
+
+
+
+
+

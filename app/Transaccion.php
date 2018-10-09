@@ -9,7 +9,9 @@ class Transaccion extends Model
     protected $table = 'transacciones';
   	protected $fillable = [
   		'id',
-      'tipo_transaccion_id'
+      'tipo_transaccion_id',
+      'cliente_id',
+      'proveedor_id'
   	];
    
 }

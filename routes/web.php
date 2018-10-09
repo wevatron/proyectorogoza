@@ -37,6 +37,7 @@ Route::get('bodegaasync', 'StockController@obtenerBodega')->name('bodegaasync');
 
 Route::get('puntoVenta', 'Pv@index')->name('puntoVenta');
 Route::get('azInventario', 'Pv@inventario')->name('azInventario');
+Route::get('azCliente', 'Pv@cliente')->name('azCliente');
 
 Route::post('stockasyn','StockController@insertar')->name('stockasyn');
 Route::get('recibo/{id}', 'Pv@recibo')->name('recibo');

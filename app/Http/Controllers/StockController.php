@@ -109,6 +109,7 @@ class StockController extends Controller
 
     $trasaccion = new Transaccion;
     $trasaccion->tipo_transaccion_id=2;
+    $trasaccion->cliente_id=$request->idCliente;
     $trasaccion->save();
 
     $i = 0;
@@ -119,7 +120,7 @@ class StockController extends Controller
           $stock->proveedor_id = 0;
           $stock->producto_id = $value['producto_id'];
           $stock->precio_compra = $value['costo_iva'];
-          $stock->precio_venta = $value['costo_iva']*1.4;
+          $stock->precio_venta = floatVal($value['costo_iva']*1.4);
           $stock->estado_id = 2;
           $stock->bodega_id = 1;
           $stock->transaccion_id = $trasaccion->id;

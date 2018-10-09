@@ -15,7 +15,9 @@ class Transaccion extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tipo_transaccion_id');    
+            $table->integer('tipo_transaccion_id'); 
+            $table->integer('cliente_id')->nullable();   
+            $table->integer('proveedor_id')->nullable();    
             $table->timestamps();
         });
 
