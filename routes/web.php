@@ -25,7 +25,7 @@ Route::resource('descuento', 'DescuentoController');
 Route::resource('producto', 'ProductoController');
 Route::resource('proveedor', 'ProveedorController');
 Route::resource('stock', 'StockController');
-Route::resource('tipoparte', 'TipoparteController');
+Route::resource('tipoparte', 'TipoParteController');
 Route::resource('transaccion', 'TransaccionController');
 Route::resource('venta', 'VentaController');
 Route::resource('inventario', 'InventariosController');

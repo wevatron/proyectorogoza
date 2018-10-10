@@ -13,6 +13,9 @@ class InventariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct(){
+       $this->middleware('auth');
+     }
     public function index()
     {
         $Stock = DB::table('stock')
@@ -23,7 +26,7 @@ class InventariosController extends Controller
         ->whereIn('stock.estado_id', array(1,2))
         ->paginate(10);
         //dd($Stock->all());
-        return view('inventario.index', compact('Stock'));
+        return view('Inventario.index', compact('Stock'));
     }
 
     /**

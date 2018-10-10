@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Stock;
 use App\Proveedor;
-use App\producto;
+use App\Producto;
 use App\Transaccion;
 use App\Http\Requests\StockRequest;
 use DB;
@@ -128,7 +128,7 @@ class StockController extends Controller
 
 
       }
-      return response()->json($trasaccion->id); 
+      return response()->json($trasaccion->id);
 
 
   }

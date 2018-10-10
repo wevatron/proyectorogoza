@@ -6,8 +6,8 @@
     @else
     {!!Form::text('l_tipo_parte_id',null, ['class'=> 'form-control', 'disabled','id' => 'l_tipo_parte_id'])!!}
     @endif
-    {{ Form::hidden('tipo_parte_id', null, array('id' => 'tipo_parte_id')) }} 
-     
+    {{ Form::hidden('tipo_parte_id', null, array('id' => 'tipo_parte_id')) }}
+
       <a id='btn_tipo_parte_id' onclick="limpiar('l_tipo_parte_id');" href="#!"><i class="material-icons">edit</i>
 </a>
   </div>
@@ -98,9 +98,7 @@
 
   $(document).ready(function() {
 
-    $("#d_corta_id").focusout(function () {
-      $("#d_larga_id").val($("#d_corta_id").val());
-    });
+    
     $("#precioiva_id").focusout(function () {
       $("#preciopublic_id").val((parseFloat($("#precioiva_id").val())*1.4).toFixed(2));
     });
@@ -116,18 +114,18 @@
             source:'{!!URL::route('productotipoparteasync')!!}',
             minlength:1,
             autoFocus:true,
-               change: function (event, ui) { 
-                 
+               change: function (event, ui) {
+
              },
             select:function(e,ui)
             {
 
               $('#tipo_parte_id').val(ui.item.miid);
               $('#l_tipo_parte_id').attr('disabled', true)
-              
-             
+
+
             }
-        });    
+        });
 });
   </script>
 

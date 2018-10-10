@@ -6,7 +6,7 @@
       <h3>Catalogo de productos</h3>
       {{Form::open(['route'=>'producto.index','method'=>'GET'])}}
           {{Form::text(' nombre',null, ['id'=>'bus_id','placeholder'=>'Buscar Por Código de Barras','class'=>'form-control'])}}
-          
+
       {{Form::close()}}
       <div class="text-right" style="margin-bottom: 20px">
         <a class="btn btn-primary" href=" {{route('producto.create')}} ">Agregar Producto</a>
@@ -46,4 +46,9 @@
       {!!$Productos->appends(Request::only(['nombre']))->render()!!}
     </div>
   </div>
+  <script>
+  $( document ).ready(function() {
+      $("#bus_id").focus();
+  });
+  </script>
 @endsection
