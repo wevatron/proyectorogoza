@@ -41,7 +41,7 @@ Route::get('azCliente', 'Pv@cliente')->name('azCliente');
 
 Route::post('stockasyn','StockController@insertar')->name('stockasyn');
 Route::get('recibo/{id}', 'Pv@recibo')->name('recibo');
-
+Route::resource('reporte', 'ReportesController');
 
 
 Route::get('importExport', 'MaatwebsiteDemoController@importExport');

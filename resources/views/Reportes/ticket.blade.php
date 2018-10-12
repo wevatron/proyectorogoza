@@ -14,15 +14,20 @@ class PDF extends FPDF
 		$this->Cell(0,0,'ROGOZA',0,0,'C');
 		$this->SetFont('Arial','',12);
 		$this->Ln(6);
-		$this->Cell(0,0,"REPORTE DE: ".$this->reporte,0,1,'C');
+		$this->Cell(0,0,$this->reporte,0,1,'C');
 		$this->SetFont('Arial','',10);
 		$this->Cell(0,0,$this->dia." DE ".$meses[$this->mes-1]." DE ".$this->a,0,1,'R');
 		$this->Ln(6);
 		$this->SetFont('Arial','',12);
 		$this->Cell(0,0,'SUCURSAL: '.$this->SUCU,0,1,'C');
+		$this->Ln(6);
+		$this->Cell(0,0,'CLIENTE: '.$this->SUCU,0,1,'C');
+		$this->Ln(6);
+		$this->Cell(0,0,'FOLIO: '.$this->SUCU,0,1,'C');
+		$this->Ln(6);
+		$this->Cell(0,0,'LUGAR Y FECHA: '.$this->SUCU,0,1,'C');
 		$this->Ln(20);
 		$this->SetFont('Arial','',10);
-		$this->Cell(0,0,"TOTAL DE ".$this->reporte.": $".number_format($this->total[0]->total,2),0,1,'C',false);
 		$this->SetX((210-$w)/2);
 		$this->SetDrawColor(0,80,180);
 		$this->SetFillColor(230,230,0);
@@ -57,7 +62,7 @@ class PDF extends FPDF
 		$this->SetFillColor(231,243,243);
 		$this->SetTextColor(0);
 		$this->SetDrawColor(154,202,195);
-		$this->SetFont('','',8);
+		$this->SetFont('Arial','',12);
 		$this->SetLineWidth(.1);
 		for($i=0;$i<count($header);$i++)
 				$this->Cell($w[$i],6,$header[$i],1,0,'C',true);
@@ -65,7 +70,6 @@ class PDF extends FPDF
 		$this->SetFillColor(224,235,255);
 		$this->SetDrawColor(255);
 		$this->SetTextColor(0);
-		$this->SetFont('','',8);
 	}
 
 
@@ -73,15 +77,12 @@ class PDF extends FPDF
 
 
 	function FancyTable($header, $data){
-	    $w = array(20, 20, 10 ,60, 20, 20, 20,20);
+
+	    $w = array(36, 80, 36 ,36);
 			$this->encabezado($w,$header);
+			$this->SetFont('Arial','',12);
 			$fill = false;
 			$i=0;
-			$j=0;
-			$prestamo=0;
-			$avaluo=0;
-			$interes=0;
-			$recargo=0;
 			$total=0;
 	    foreach($data as $row){
 
@@ -89,22 +90,11 @@ class PDF extends FPDF
 						if(($i%38)==0 && ($i>3)){
 							$this->encabezado($w,$header);
 						}
-						$this->Cell($w[0],6,"P".$row->numero_interno,'LR',0,'C',$fill);
-						$this->Cell($w[1],6,$row->id,'LR',0,'C',$fill);
-						if($row->tipo==1){
-							$this->Cell($w[2],6,"A",'LR',0,'C',$fill);
-						}elseif($row->tipo==2){
-							$this->Cell($w[2],6,"V",'LR',0,'C',$fill);
-						}
-						$this->Cell($w[3],6,utf8_decode($row->nombre),'LR',0,'C',$fill);
-						$this->Cell($w[4],6,"$ ".number_format($row->prestamo,2),'LR',0,'C',$fill);
-						$prestamo=$prestamo+$row->prestamo;
-						$this->Cell($w[5],6,"$ ".number_format($row->interes_vencido,2),'LR',0,'C',$fill);
-						$interes=$interes+$row->interes_vencido;
-						$this->Cell($w[6],6,"$ ".number_format($row->recargo,2),'LR',0,'C',$fill);
-						$recargo=$recargo+$row->recargo;
-						$this->Cell($w[7],6,"$ ".number_format($row->interes_vencido+$row->recargo,2),'LR',0,'C',$fill);
-						$total=$total+$row->interes_vencido+$row->recargo;
+						$this->Cell($w[0],6,abs($row->cantidad),'LR',0,'C',$fill);
+						$this->Cell($w[1],6,utf8_decode($row->nombre),'LR',0,'C',$fill);
+						$this->Cell($w[2],6,"$ ".number_format($row->precio_venta,2),'LR',0,'C',$fill);
+						$this->Cell($w[3],6,"$ ".number_format($row->precio_venta*abs($row->cantidad),2),'LR',0,'C',$fill);
+						$total=$total+$row->precio_venta*abs($row->cantidad);
 		        $this->Ln();
 		        $fill = !$fill;
 						$i++;
@@ -112,15 +102,17 @@ class PDF extends FPDF
 
 		    }
 				$this->Ln();
-				$this->SetFont('','',8);
+				$this->SetFont('Arial','',12);
 				$this->Cell($w[0],6,"",'LR',0,'C',false);
-				$this->Cell($w[1],6,"Total de movimientos       ".$i,'LR',0,'C',false);
-				$this->Cell($w[2],6,"",'LR',0,'l',false);
-				$this->Cell($w[3],6,"",'LR',0,'l',false);
-				$this->Cell($w[4],6,"$ ".number_format($prestamo,2),'LR',0,'C',false);
-				$this->Cell($w[5],6,"$ ".number_format($interes,2),'LR',0,'C',false);
-				$this->Cell($w[6],6,"$ ".number_format($recargo,2),'LR',0,'C',false);
-				$this->Cell($w[7],6,"$ ".number_format($total,2),'LR',0,'C',false);
+				$this->Cell($w[1],6,"",'LR',0,'C',false);
+				$this->Cell($w[2],6,"TOTAL",'LR',0,'C',false);
+				$this->Cell($w[3],6,"TOTAL+IVA",'LR',0,'C',false);
+				$this->Ln();
+				$this->Cell($w[0],6,"",'LR',0,'C',false);
+				$this->Cell($w[1],6,"",'LR',0,'C',false);
+				$this->Cell($w[2],6,number_format($total,2),'LR',0,'C',false);
+				$this->Cell($w[3],6,number_format($total+($total*.16),2),'LR',0,'C',false);
+
 		    $this->Cell(array_sum($w),0,'','T');
 				$this->Ln(10);
 	}
@@ -140,7 +132,6 @@ $pdf = new PDF();
 $pdf->area=utf8_decode("DEPOSITARÍA");
 $pdf->reporte=utf8_decode($Reporte);
 $pdf->SUCU = utf8_decode($Sucursal);
-$pdf->total=$Total;
 $fecha2=explode("-",$Fecha);
 if($fecha2[1]<'10'){
 	$fecha2[1]=substr($fecha2[1],1);
@@ -153,12 +144,12 @@ $pdf->dia = $fecha2[2];
 
 $pdf->AliasNbPages();
 
-$header = array('Partida', 'Num Boleta', 'Tipo','Pignorante', 'Capital Prestado', 'Interes N.', 'Interes V.','Cobro Total');
+$header = array('Cantidad',utf8_decode('Artículo'),'Precio','Importe');
 $pdf->AddPage();
 
-
-if (!empty($Tabla)) {
-	$pdf->FancyTable($header,$Tabla);
+$pdf->SetFont('Arial','',10);
+if (!empty($desgloses)) {
+	$pdf->FancyTable($header,$desgloses);
 }
 
 

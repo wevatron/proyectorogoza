@@ -8,12 +8,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h4>Refaccionaria Grijalva</h4></div>
-                <div class="card-header text-right">FECHA: {{$transaccion->created_at}} 
+                <div class="card-header text-right">FECHA: {{$transaccion->created_at}}
                     <div>OAXACA DE JUAREZ, SANTA LUCIA DEL CAMINO</div>
                     <div>CLIENTE: {{$cliente->nombre}}</div>
                     <div>FOLIO: {{$transaccion->id}}</div>
                 </div>
-                
+
 
 
                 <div class="card-body">
@@ -42,7 +42,7 @@
                       <th scope="col" width="60%"></th>
                       <tH scope="col" width="10%">Total</tH>
                       <th scope="col" width="10%">Total + IVA</th>
-                      
+
                     </tr>
                     <tr></tr>
                     <tr>
@@ -54,6 +54,7 @@
 
                   </tbody>
                 </table>
+                <a href=" {{route('reporte.show', ['id'=> $transaccion->id] )}}  " class="btn btn-success">Generar Ticket</a> 
                 </div>
             </div>
         </div>
